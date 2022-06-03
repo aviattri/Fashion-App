@@ -1,12 +1,22 @@
 import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Onboarding from "./src/Authentication/Onboarding";
+import { Onboarding } from "./src/Authentication/Onboarding";
+import { LoadAssets } from "./src/Components";
+
+const fonts = {
+  "SFProText-Bold": require("./assets/fonts/SF-Pro-Text-Bold.otf"),
+  "SFProText-Semibold": require("./assets/fonts/SF-Pro-Text-Semibold.otf"),
+  "SFProText-Regular": require("./assets/fonts/SF-Pro-Text-Regular.otf"),
+};
 
 const AuthenticationStack = createStackNavigator();
 const AuthenticationNavigator = () => {
   return (
-    <AuthenticationStack.Navigator>
+    <AuthenticationStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <AuthenticationStack.Screen name="Onboarding" component={Onboarding} />
     </AuthenticationStack.Navigator>
   );
@@ -14,8 +24,8 @@ const AuthenticationNavigator = () => {
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <LoadAssets {...{ fonts }}>
       <AuthenticationNavigator />
-    </NavigationContainer>
+    </LoadAssets>
   );
 }
