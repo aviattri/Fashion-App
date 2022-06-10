@@ -1,17 +1,20 @@
-import { View, Text, Dimensions, StyleSheet } from "react-native";
+import { View, Text, Dimensions, StyleSheet, Image } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 export const SLIDER_HIEHGT = 0.61 * height;
+const BORDER_RADIUS = 75;
 
 interface SliderProps {
   label: String;
   right?: boolean;
+  picture: number;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+    overflow: "hidden",
   },
   title: {
     fontSize: 80,
@@ -25,9 +28,22 @@ const styles = StyleSheet.create({
     height: 100,
     justifyContent: "center",
   },
+  overlay: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginTop: 50,
+    ...StyleSheet.absoluteFillObject,
+  },
+  picture: {
+    ...StyleSheet.absoluteFillObject,
+    borderBottomRightRadius: BORDER_RADIUS,
+    height: undefined,
+    width: undefined,
+  },
 });
 
-const Slider = ({ label, right }: SliderProps) => {
+const Slider = ({ label, right, picture }: SliderProps) => {
   const transform = [
     {
       translateY: (SLIDER_HIEHGT - 100) / 2,
@@ -42,6 +58,9 @@ const Slider = ({ label, right }: SliderProps) => {
 
   return (
     <View style={{ width }}>
+      <View style={styles.overlay}>
+        <Image source={picture} resizeMode="contain" style={styles.picture} />
+      </View>
       <View style={[styles.titleContainer, { transform }]}>
         <Text style={styles.title}>{label}</Text>
       </View>

@@ -39,24 +39,28 @@ const slides = [
     label: "Relaxed",
     title: "Find Perfect Fits",
     description: `Confused about your outfit? Dont't worry! Find the best outfit here!`,
+    picture: require("../../../assets/1.png"),
     color: "#BFEAF5",
   },
   {
     label: "Smooth",
     title: "GET LATEST BRANDS",
     description: `hating the clothers in your wardrobe? Explore hundreds of outift ideas`,
+    picture: require("../../../assets/2.png"),
     color: "#BEECC4",
   },
   {
     label: "Clean",
     title: "Your Style only",
     description: `Create your individual & unique style and look amazing everyday`,
+    picture: require("../../../assets/3.png"),
     color: "#FFE4D9",
   },
   {
     label: "Flunky",
     title: "Look Fresh Everday",
     description: `Discover the latest trends in fashion and explore your personality`,
+    picture: require("../../../assets/4.png"),
     color: "#FFDDDD",
   },
 ];
@@ -80,8 +84,9 @@ const Onboarding = () => {
           bounces={false}
           {...scrollHandler}
         >
-          {slides.map(({ label }, index) => (
-            <Slider {...{ label }} key={index} right={!!(index % 2)} />
+          {/* Splash Screens */}
+          {slides.map(({ label, picture }, index) => (
+            <Slider {...{ label, picture }} key={index} right={!!(index % 2)} />
           ))}
         </Animated.ScrollView>
       </Animated.View>
