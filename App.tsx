@@ -3,11 +3,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Onboarding, Welcome } from "./src/Authentication";
 import { LoadAssets, theme } from "./src/Components";
 import { ThemeProvider } from "@shopify/restyle";
-
 const fonts = {
-  "SFProText-Bold": require("./assets/fonts/SF-Pro-Text-Bold.otf"),
-  "SFProText-Semibold": require("./assets/fonts/SF-Pro-Text-Semibold.otf"),
-  "SFProText-Regular": require("./assets/fonts/SF-Pro-Text-Regular.otf"),
+  "SFProDisplay-Bold": require("./assets/fonts/SFPro-Display-Bold.ttf"),
+  "SFProDisplay-Semibold": require("./assets/fonts/SFPro-Display-Semibold.ttf"),
+  "SFProDisplay-Regular": require("./assets/fonts/SFPro-Display-Regular.ttf"),
+  "SFProDisplay-Medium": require("./assets/fonts/SFPro-Display-Medium.ttf"),
 };
 
 const AuthenticationStack = createStackNavigator();
