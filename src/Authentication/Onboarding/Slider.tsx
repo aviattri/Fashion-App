@@ -1,5 +1,5 @@
-import { View, Text, Dimensions, StyleSheet, Image } from "react-native";
-
+import { View, Dimensions, StyleSheet, Image } from "react-native";
+import { Text } from "../../Components";
 const { width, height } = Dimensions.get("window");
 export const SLIDER_HIEHGT = 0.61 * height;
 const BORDER_RADIUS = 75;
@@ -16,14 +16,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     overflow: "hidden",
   },
-  title: {
-    fontSize: 80,
-    fontFamily: "SFProText-Bold",
-    color: "white",
-    textAlign: "center",
-    //for it work smoothly on android ; we use line height
-    lineHeight: 80,
-  },
+
   titleContainer: {
     height: 100,
     justifyContent: "center",
@@ -62,7 +55,7 @@ const Slider = ({ label, right, picture }: SliderProps) => {
         <Image source={picture} resizeMode="contain" style={styles.picture} />
       </View>
       <View style={[styles.titleContainer, { transform }]}>
-        <Text style={styles.title}>{label}</Text>
+        <Text variant={"hero"}>{label}</Text>
       </View>
     </View>
   );
