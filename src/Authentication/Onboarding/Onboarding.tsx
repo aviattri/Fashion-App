@@ -1,7 +1,13 @@
-import { View, StyleSheet, Dimensions, Text } from "react-native";
+import { View, StyleSheet, Dimensions, Text, Image } from "react-native";
 import React from "react";
 import { interpolateColor, useScrollHandler } from "react-native-redash";
-import Animated, { divide, multiply } from "react-native-reanimated";
+import Animated, {
+  divide,
+  Extrapolate,
+  interpolate,
+  interpolateNode,
+  multiply,
+} from "react-native-reanimated";
 import Slider, { SLIDER_HIEHGT } from "./Slider";
 import Subslider from "./Subslider";
 import Dot from "./Dot";
@@ -32,6 +38,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 20,
   },
+  underlay: {
+    justifyContent: "flex-end",
+    alignItems: "center",
+    ...StyleSheet.absoluteFillObject,
+    overflow: "hidden",
+  },
 });
 
 const slides = [
@@ -39,28 +51,44 @@ const slides = [
     label: "Relaxed",
     title: "Find Perfect Fits",
     description: `Confused about your outfit? Dont't worry! Find the best outfit here!`,
-    picture: require("../../../assets/1.png"),
+    picture: {
+      src: require("../../../assets/1.png"),
+      width: 2513,
+      height: 3583,
+    },
     color: "#BFEAF5",
   },
   {
     label: "Smooth",
     title: "GET LATEST BRANDS",
     description: `hating the clothers in your wardrobe? Explore hundreds of outift ideas`,
-    picture: require("../../../assets/2.png"),
+    picture: {
+      src: require("../../../assets/2.png"),
+      width: 2791,
+      height: 3744,
+    },
     color: "#BEECC4",
   },
   {
     label: "Clean",
     title: "Your Style only",
     description: `Create your individual & unique style and look amazing everyday`,
-    picture: require("../../../assets/3.png"),
+    picture: {
+      src: require("../../../assets/3.png"),
+      width: 2788,
+      height: 3244,
+    },
     color: "#FFE4D9",
   },
   {
     label: "Flunky",
     title: "Look Fresh Everday",
     description: `Discover the latest trends in fashion and explore your personality`,
-    picture: require("../../../assets/4.png"),
+    picture: {
+      src: require("../../../assets/4.png"),
+      width: 1757,
+      height: 2551,
+    },
     color: "#FFDDDD",
   },
 ];
@@ -75,6 +103,37 @@ const Onboarding = () => {
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.slider, { backgroundColor }]}>
+        {/* Scroll View Background */}
+        {slides.map((slide, index) => {
+          const opacity = interpolateNode(x, {
+            inputRange: [
+              (index - 1) * width,
+              index * width,
+              (index + 1) * width,
+            ],
+            outputRange: [0, 1, 0],
+            extrapolate: Extrapolate.CLAMP,
+          });
+          return (
+            <Animated.View
+              style={[
+                styles.underlay,
+                { borderBottomRightRadius: theme.borderRadii.xl },
+                { opacity },
+              ]}
+            >
+              <Image
+                source={slide.picture.src}
+                style={{
+                  width: width - 75,
+                  height:
+                    ((width - 75) * slide.picture.height) / slide.picture.width,
+                }}
+              />
+            </Animated.View>
+          );
+        })}
+
         <Animated.ScrollView
           ref={scroll}
           horizontal
