@@ -1,8 +1,7 @@
 import { View, Dimensions, StyleSheet, Image } from "react-native";
-import { Text } from "../../Components";
+import { Text, theme } from "../../Components";
 const { width, height } = Dimensions.get("window");
 export const SLIDER_HIEHGT = 0.61 * height;
-const BORDER_RADIUS = 75;
 
 interface SliderProps {
   label: String;
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
   },
   picture: {
     ...StyleSheet.absoluteFillObject,
-    borderBottomRightRadius: BORDER_RADIUS,
+    borderBottomRightRadius: theme.borderRadii.xl,
     height: undefined,
     width: undefined,
   },
