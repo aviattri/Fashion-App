@@ -1,8 +1,16 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Onboarding, Welcome } from "./src/Authentication";
+import {
+  Onboarding,
+  Welcome,
+  assets as AuthenticationAssets,
+} from "./src/Authentication";
 import { LoadAssets, theme } from "./src/Components";
 import { ThemeProvider } from "@shopify/restyle";
+import { Routes } from "./src/Components/Navigation";
+
+const assets = [...AuthenticationAssets];
+
 const fonts = {
   "SFProDisplay-Bold": require("./assets/fonts/SFPro-Display-Bold.ttf"),
   "SFProDisplay-Semibold": require("./assets/fonts/SFPro-Display-Semibold.ttf"),
@@ -10,7 +18,7 @@ const fonts = {
   "SFProDisplay-Medium": require("./assets/fonts/SFPro-Display-Medium.ttf"),
 };
 
-const AuthenticationStack = createStackNavigator();
+const AuthenticationStack = createStackNavigator<Routes>();
 const AuthenticationNavigator = () => {
   return (
     <AuthenticationStack.Navigator
@@ -27,7 +35,7 @@ const AuthenticationNavigator = () => {
 export default function App() {
   return (
     <ThemeProvider {...{ theme }}>
-      <LoadAssets {...{ fonts }}>
+      <LoadAssets {...{ fonts, assets }}>
         <AuthenticationNavigator />
       </LoadAssets>
     </ThemeProvider>

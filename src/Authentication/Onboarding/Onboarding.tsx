@@ -4,7 +4,6 @@ import { interpolateColor, useScrollHandler } from "react-native-redash";
 import Animated, {
   divide,
   Extrapolate,
-  interpolate,
   interpolateNode,
   multiply,
 } from "react-native-reanimated";
@@ -12,6 +11,7 @@ import Slider, { SLIDER_HIEHGT } from "./Slider";
 import Subslider from "./Subslider";
 import Dot from "./Dot";
 import { theme } from "../../Components";
+import { Routes, StackNavigationProps } from "../../Components/Navigation";
 
 const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
@@ -93,7 +93,11 @@ const slides = [
   },
 ];
 
-const Onboarding = () => {
+export const assets = slides.map((slide) => slide.picture.src);
+
+const Onboarding = ({
+  navigation,
+}: StackNavigationProps<Routes, "Welcome">) => {
   const scroll = React.useRef<Animated.ScrollView>(null);
   const { scrollHandler, x } = useScrollHandler();
   const backgroundColor = interpolateColor(x, {
@@ -172,20 +176,24 @@ const Onboarding = () => {
               transform: [{ translateX: multiply(x, -1) }],
             }}
           >
-            {slides.map(({ title, description }, index) => (
-              <Subslider
-                key={index}
-                onPress={() => {
-                  if (scroll.current) {
-                    scroll.current
-                      .getNode()
-                      .scrollTo({ x: width * (index + 1), animated: true });
-                  }
-                }}
-                last={index === slides.length - 1}
-                {...{ title, description, x }}
-              />
-            ))}
+            {slides.map(({ title, description }, index) => {
+              const last = index === slides.length - 1;
+              return (
+                <Subslider
+                  key={index}
+                  onPress={() => {
+                    if (last) {
+                      navigation.navigate("Welcome");
+                    } else {
+                      scroll.current
+                        ?.getNode()
+                        .scrollTo({ x: width * (index + 1), animated: true });
+                    }
+                  }}
+                  {...{ title, description, x, last }}
+                />
+              );
+            })}
           </Animated.View>
         </Animated.View>
       </View>
