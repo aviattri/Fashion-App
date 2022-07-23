@@ -6319,6 +6319,11 @@ svg-arc-to-cubic-bezier@^3.0.0:
   resolved "https://registry.yarnpkg.com/svg-arc-to-cubic-bezier/-/svg-arc-to-cubic-bezier-3.2.0.tgz#390c450035ae1c4a0104d90650304c3bc814abe6"
   integrity sha512-djbJ/vZKZO+gPoSDThGNpKDO+o+bAeA4XQKovvkNCqnIS2t+S4qnLAGQhyyrulhCFRl1WWzAp0wUDV8PpTVU3g==
 
+svg@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/svg/-/svg-0.1.0.tgz#e934fcb55b796b818aa889aafee3ece3a09e6f90"
+  integrity sha512-tKPPdZUNwJoWhmDU4MvzJDoS3VmLaq47T0OuYLKYE4ZAnB+ockbt3F10fvWXXB7ZlpV0WEUhPd7sAAYg2WGCVQ==
+
 temp-dir@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/temp-dir/-/temp-dir-1.0.0.tgz#0a7c0ea26d3a39afa7e0ebea9c1fc0bc4daa011d"

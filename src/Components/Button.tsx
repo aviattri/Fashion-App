@@ -1,5 +1,5 @@
 import { TouchableOpacity, StyleSheet } from "react-native";
-import React from "react";
+import React, { ReactNode } from "react";
 import { Theme, Text } from "./Theme";
 import { useTheme } from "@shopify/restyle";
 
@@ -17,9 +17,10 @@ interface ButtonProps {
   label: string;
   variant: "default" | "primary" | "transparent";
   onPress: () => void;
+  children?: ReactNode;
 }
 
-const Button = ({ label, variant, onPress }: ButtonProps) => {
+const Button = ({ label, variant, onPress, children }: ButtonProps) => {
   const theme = useTheme<Theme>();
   const backgroundColor =
     variant === "primary"
@@ -28,16 +29,20 @@ const Button = ({ label, variant, onPress }: ButtonProps) => {
       ? "transparent"
       : theme.colors.grey;
   const color =
-    variant === "primary" ? theme.colors.white : theme.colors.button;
+    variant === "primary" ? theme.colors.white : theme.colors.secondary;
 
   return (
     <TouchableOpacity
       style={[styles.container, { backgroundColor: backgroundColor }]}
       {...{ onPress }}
     >
-      <Text variant={"button"} style={{ color: color }}>
-        {label}
-      </Text>
+      {children ? (
+        children
+      ) : (
+        <Text variant={"button"} style={{ color: color }}>
+          {label}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 };
