@@ -51,9 +51,9 @@ const Container = ({ children, footer }: ContainerProps) => {
           flex={1}
           borderRadius="xl"
           borderTopLeftRadius={0}
-        />
-        {children}
-        {/* </Box> */}
+        >
+          {children}
+        </Box>
       </Box>
       <Box backgroundColor={"secondary"} paddingTop="m">
         {footer}

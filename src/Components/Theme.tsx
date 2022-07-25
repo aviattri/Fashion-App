@@ -6,9 +6,12 @@ const theme = {
     secondary: "#0C0D34",
     title: "#0C0D34",
     body: "rgba(12,13,52, 0.7)",
+    text: "rgba(12,13,52, 0.7)",
     white: "white",
     grey: "rgba(12, 13,52, 0.05)",
     slideGray: "#F4F0EF",
+    darkGrey: "#8A8D90",
+    danger: "#FF0058",
   },
   spacing: {
     s: 8,
