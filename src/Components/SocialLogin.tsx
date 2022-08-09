@@ -1,9 +1,7 @@
-import { View, Text } from "react-native";
 import React from "react";
 import Svg, { Circle, ClipPath, Defs, Path, Use } from "react-native-svg";
-import theme, { Box } from "./Theme";
+import { Box, useTheme } from "./Theme";
 
-const SIZE = theme.borderRadii.l;
 const Google = () => (
   <Svg
     width={30.8}
@@ -131,12 +129,15 @@ const Apple = () => (
   </Svg>
 );
 const SocialIcon = ({ children }: SocialIconProps) => {
+  const theme = useTheme();
+  const SIZE = theme.borderRadii.l * 1.5;
+
   return (
     <Box
       backgroundColor="white"
       padding="s"
-      width={44}
-      height={44}
+      width={SIZE}
+      height={SIZE}
       borderRadius="l"
       justifyContent="center"
       alignItems="center"
