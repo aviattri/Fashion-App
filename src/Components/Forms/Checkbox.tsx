@@ -1,17 +1,18 @@
 import React from "react";
 import { Box, Text } from "../Theme";
 import { Feather as Icon } from "@expo/vector-icons";
-import { RectButton } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
+
 interface CheckboxProps {
   label: string;
+  checked: boolean;
+  onChange: () => void;
 }
 
-const Checkbox = ({ label }: CheckboxProps) => {
-  const [checked, setChecked] = React.useState(false);
-
+const Checkbox = ({ label, onChange, checked }: CheckboxProps) => {
   return (
-    <RectButton
-      onPress={() => setChecked((c) => !c)}
+    <TouchableOpacity
+      onPress={() => onChange()}
       style={{ justifyContent: "center" }}
     >
       <Box flexDirection="row" alignItems="center">
@@ -26,11 +27,11 @@ const Checkbox = ({ label }: CheckboxProps) => {
           justifyContent="center"
           alignItems="center"
         >
-          <Icon name="check" />
+          {checked && <Icon name="check" />}
         </Box>
         <Text variant="button">{label}</Text>
       </Box>
-    </RectButton>
+    </TouchableOpacity>
   );
 };
 
