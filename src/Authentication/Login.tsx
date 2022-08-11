@@ -1,11 +1,14 @@
 import React, { useRef } from "react";
 
-import { Box, Button, Container, Text } from "../../Components";
-import TextInput from "../../Components/Forms/TextInput";
-import Checkbox from "../../Components/Forms/Checkbox";
+import { Box, Button, Container, Text } from "../Components";
+import { Routes, StackNavigationProps } from "../Components/Navigation";
+
+import TextInput from "../Components/Forms/TextInput";
+import Checkbox from "../Components/Forms/Checkbox";
+import Footer from "../Components/Footer";
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import Footer from "../../Components/Footer";
 
 const LoginSchema = Yup.object().shape({
   password: Yup.string()
@@ -15,7 +18,9 @@ const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
 });
 
-export default function Login() {
+export default function Login({
+  navigation,
+}: StackNavigationProps<Routes, "Login">) {
   const {
     handleChange,
     handleBlur,
@@ -35,8 +40,8 @@ export default function Login() {
   const footer = (
     <Footer
       title="Don't have an account? "
-      action="Sign   Up here"
-      onPress={() => console.log("Singup")}
+      action="Sign Up here"
+      onPress={() => navigation.navigate("SignUp")}
     />
   );
 
