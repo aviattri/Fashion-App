@@ -13,8 +13,8 @@ interface TextInputProps extends RNTextInputProps {
   error?: string;
 }
 
-const TextInput = forwardRef(
-  ({ icon, touched, error, ...props }: TextInputProps, ref) => {
+const TextInput = forwardRef<RNTextInput, TextInputProps>(
+  ({ icon, touched, error, ...props }, ref) => {
     const theme = useTheme();
     const reColor = !touched ? "text" : error ? "danger" : "primary";
     const color = theme.colors[reColor];

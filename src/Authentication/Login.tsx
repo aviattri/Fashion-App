@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { TextInput as RNTextInput } from "react-native";
 
 import { Box, Button, Container, Text } from "../Components";
 import { Routes, StackNavigationProps } from "../Components/Navigation";
@@ -35,7 +36,7 @@ export default function Login({
     onSubmit: (values) => console.log(values),
   });
 
-  const password = useRef<typeof TextInput>(null);
+  const password = useRef<RNTextInput>(null);
 
   const footer = (
     <Footer
@@ -99,7 +100,10 @@ export default function Login({
               checked={values.remember}
               onChange={() => setFieldValue("remember", !values.remember)}
             />
-            <Button variant="transparent">
+            <Button
+              variant="transparent"
+              onPress={() => navigation.navigate("ForgotPassword")}
+            >
               <Text variant="button" color="primary">
                 Forgot Password
               </Text>

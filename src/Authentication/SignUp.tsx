@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-
+import { TextInput as RNTextInput } from "react-native";
 import { Box, Button, Container, Text } from "../Components";
 import { Routes, StackNavigationProps } from "../Components/Navigation";
 
@@ -35,8 +35,8 @@ export default function SignUp({
     }
   );
 
-  const password = useRef<typeof TextInput>(null);
-  const passwordConfirmation = useRef<typeof TextInput>(null);
+  const password = useRef<RNTextInput>(null);
+  const passwordConfirmation = useRef<RNTextInput>(null);
 
   const footer = (
     <Footer
