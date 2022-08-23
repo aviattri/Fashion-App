@@ -3,12 +3,14 @@ import {
   createText,
   useTheme as useReTheme,
 } from "@shopify/restyle";
+
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
 export const theme = {
   colors: {
     primary: "#2CB9B0",
     secondary: "#0C0D34",
+    primaryLight: "#E7F9F7",
     title: "#0C0D34",
     body: "rgba(12,13,52, 0.7)",
     text: "rgba(12,13,52, 0.7)",
@@ -60,6 +62,10 @@ export const theme = {
       fontSize: 15,
       lineHeight: 24,
       fontFamily: "SFProDisplay-Regular",
+    },
+    primary: {
+      color: "primary",
+      textAlign: "center",
     },
   },
 };
