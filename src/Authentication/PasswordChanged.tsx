@@ -1,11 +1,16 @@
 import React from "react";
-import { Feather as Icon } from "@expo/vector-icons";
 
 import { Routes, StackNavigationProps } from "../Components/Navigation";
-import { Box, Button, Container, Text } from "../Components";
-import { ClosedButton } from "../Components";
+import {
+  Box,
+  Button,
+  Container,
+  RoundedIconButton,
+  RoundedIcons,
+  Text,
+} from "../Components";
 
-interface PasswordChangedProps {}
+// interface PasswordChangedProps {}
 
 const SIZE = 80;
 
@@ -14,25 +19,27 @@ const PasswordChanged = ({
 }: StackNavigationProps<Routes, "PasswordChanged">) => {
   return (
     <Container
+      pattern={0}
       footer={
         <Box flexDirection="row" justifyContent="center">
-          <ClosedButton onPress={() => navigation.pop()} />
+          <RoundedIconButton
+            color="secondary"
+            backgroundColor="white"
+            name="x"
+            size={60}
+            onPress={() => navigation.pop()}
+          />
         </Box>
       }
     >
-      <Box flex={1} justifyContent="center" alignItems="center">
-        <Box
+      <Box flex={1} justifyContent="center" alignItems="center" padding="xl">
+        <RoundedIcons
+          name="check"
+          size={SIZE}
           backgroundColor="primaryLight"
-          style={{ height: SIZE, width: SIZE, borderRadius: SIZE / 2 }}
-          alignItems="center"
-          justifyContent="center"
-          marginBottom="xl"
-        >
-          <Text variant="primary" textAlign="center">
-            <Icon name="check" size={32} />
-          </Text>
-        </Box>
-        <Text variant="title1" textAlign="center" marginBottom="l">
+          color="primary"
+        />
+        <Text variant="title1" textAlign="center" marginVertical="l">
           Your Password was successfully changed
         </Text>
         <Text variant="body" textAlign="center">

@@ -6,6 +6,7 @@ import {
 import React, { forwardRef, RefObject } from "react";
 import { Feather as Icon } from "@expo/vector-icons";
 import { useTheme, Box } from "../Theme";
+import RoundedIcons from "../RoundedIcons";
 
 interface TextInputProps extends RNTextInputProps {
   icon: string;
@@ -47,22 +48,12 @@ const TextInput = forwardRef<RNTextInput, TextInputProps>(
           />
         </Box>
         {touched && (
-          <Box
-            height={SIZE}
-            width={SIZE}
-            borderRadius="m"
-            alignItems="center"
-            justifyContent="center"
+          <RoundedIcons
+            name={!error ? "check" : "x"}
+            size={SIZE}
             backgroundColor={!error ? "primary" : "danger"}
-            style={{ borderRadius: SIZE / 2 }}
-          >
-            <Icon
-              name={!error ? "check" : "x"}
-              color="white"
-              size={16}
-              style={{ alignItems: "center" }}
-            />
-          </Box>
+            color="white"
+          />
         )}
       </Box>
     );

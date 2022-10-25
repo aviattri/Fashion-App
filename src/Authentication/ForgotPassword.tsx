@@ -33,7 +33,7 @@ const ForgotPassword = ({
   );
 
   return (
-    <Container {...{ footer }}>
+    <Container pattern={1} {...{ footer }}>
       <Box padding="xl" justifyContent="center" flex={1}>
         <Text variant="title1" textAlign="center" marginBottom="l">
           Forgot Password
