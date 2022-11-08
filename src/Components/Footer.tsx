@@ -1,8 +1,8 @@
-import { View, TouchableWithoutFeedback } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { Box, Text } from "./Theme";
-import Button from "./Button";
 import SocialLogin from "./SocialLogin";
+import { BorderlessButton } from "react-native-gesture-handler";
 
 interface FooterProps {
   title: string;
@@ -15,14 +15,14 @@ const Footer = ({ title, onPress, action }: FooterProps) => {
     <View>
       <SocialLogin />
       <Box alignItems="center" marginTop="m">
-        <TouchableWithoutFeedback {...{ onPress }}>
+        <BorderlessButton {...{ onPress }}>
           <Text variant={"button"} color="white">
             <Text variant={"button"}>{`${title}`}</Text>
             <Text variant={"button"} color="primary">
               {`${action}`}
             </Text>
           </Text>
-        </TouchableWithoutFeedback>
+        </BorderlessButton>
       </Box>
     </View>
   );

@@ -10,6 +10,7 @@ import Footer from "../Components/Footer";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { BorderlessButton } from "react-native-gesture-handler";
 
 const LoginSchema = Yup.object().shape({
   password: Yup.string()
@@ -91,23 +92,22 @@ export default function Login({
           </Box>
           <Box
             flexDirection="row"
-            justifyContent="center"
-            marginLeft="l"
-            paddingLeft="xl"
+            justifyContent="space-between"
+            marginVertical="s"
+            alignItems="center"
           >
             <Checkbox
               label="Remember me"
               checked={values.remember}
               onChange={() => setFieldValue("remember", !values.remember)}
             />
-            <Button
-              variant="transparent"
+            <BorderlessButton
               onPress={() => navigation.navigate("ForgotPassword")}
             >
               <Text variant="button" color="primary">
                 Forgot Password
               </Text>
-            </Button>
+            </BorderlessButton>
           </Box>
           <Box alignItems="center" marginTop="m">
             <Button variant="primary" label="Login" onPress={handleSubmit} />

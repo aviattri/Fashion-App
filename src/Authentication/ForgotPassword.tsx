@@ -61,11 +61,11 @@ const ForgotPassword = ({
           </Box>
 
           <Box alignItems="center" marginTop="m">
-            <Button
+            {/* <Button
               variant="primary"
               label="Reset Password"
               onPress={handleSubmit}
-            />
+            /> */}
           </Box>
         </Box>
       </Box>
