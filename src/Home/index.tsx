@@ -1,10 +1,9 @@
-import * as React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { NavigationContainer } from "@react-navigation/native";
-
+import * as React from "react";
+import { HomeRoutes } from "../Components/Navigation";
 import OutfitIdeas from "./OutfitIdeas";
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<HomeRoutes>();
 
 export const HomeNavigator = () => (
   <Drawer.Navigator>
