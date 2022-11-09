@@ -7,7 +7,8 @@ import { LoadAssets } from "./src/Components";
 import { ThemeProvider } from "@shopify/restyle";
 import { theme } from "./src/Components/Theme";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
+import { createStackNavigator } from "@react-navigation/stack";
+import { HomeNavigator } from "./src/Home";
 const assets = [...AuthenticationAssets];
 
 const fonts = {
@@ -17,12 +18,25 @@ const fonts = {
   "SFProDisplay-Medium": require("./assets/fonts/SFPro-Display-Medium.ttf"),
 };
 
+type AppStackRoutes = {
+  Authentication: undefined;
+  Home: undefined;
+};
+
+const AppStack = createStackNavigator<AppStackRoutes>();
+
 export default function App() {
   return (
     <SafeAreaProvider>
       <ThemeProvider {...{ theme }}>
         <LoadAssets {...{ fonts, assets }}>
-          <AuthenticationNavigator />
+          <AppStack.Navigator headerMode="none">
+            <AppStack.Screen
+              name="Authentication"
+              component={AuthenticationNavigator}
+            />
+            <AppStack.Screen name="Home" component={HomeNavigator} />
+          </AppStack.Navigator>
         </LoadAssets>
       </ThemeProvider>
     </SafeAreaProvider>

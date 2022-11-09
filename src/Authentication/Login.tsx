@@ -34,7 +34,7 @@ export default function Login({
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: "", password: "", remember: false },
-    onSubmit: (values) => console.log(values),
+    onSubmit: () => navigation.navigate("Home"),
   });
 
   const password = useRef<RNTextInput>(null);
