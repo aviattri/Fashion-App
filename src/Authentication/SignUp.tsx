@@ -48,67 +48,65 @@ export default function SignUp({
 
   return (
     <Container pattern={1} {...{ footer }}>
-      <Box padding="xl">
-        <Text variant="title1" textAlign="center" marginBottom="l">
-          Create account
-        </Text>
-        <Text variant="body" textAlign="center">
-          Let us know what your name, email, and your password
-        </Text>
+      <Text variant="title1" textAlign="center" marginBottom="l">
+        Create account
+      </Text>
+      <Text variant="body" textAlign="center">
+        Let us know what your name, email, and your password
+      </Text>
 
-        <Box>
-          <Box marginTop="m" marginBottom="m">
-            {/* Email */}
-            <TextInput
-              icon="mail"
-              placeholder="Enter your Email"
-              onChangeText={handleChange("email")}
-              onBlur={handleBlur("email")}
-              error={errors.email}
-              touched={touched.email}
-              autoCapitalize="none"
-              returnKeyLabel="next"
-              returnKeyType="next"
-              onSubmitEditing={() => password.current?.focus()}
-            />
-          </Box>
-          <Box marginTop="m" marginBottom="m">
-            {/* Password */}
-            <TextInput
-              ref={password}
-              icon="lock"
-              placeholder="Enter your Password"
-              onChangeText={handleChange("password")}
-              onBlur={handleBlur("password")}
-              error={errors.password}
-              touched={touched.password}
-              autoCapitalize="none"
-              returnKeyLabel="next"
-              returnKeyType="next"
-              onSubmitEditing={() => passwordConfirmation.current?.focus()}
-              secureTextEntry
-            />
-          </Box>
-          <Box marginTop="m">
-            {/* Confirm Password */}
-            <TextInput
-              ref={passwordConfirmation}
-              icon="lock"
-              placeholder="Confirm Password"
-              onChangeText={handleChange("passwordConfirmation")}
-              onBlur={handleBlur("passwordConfirmation")}
-              error={errors.passwordConfirmation}
-              touched={touched.passwordConfirmation}
-              autoCapitalize="none"
-              returnKeyLabel="next"
-              returnKeyType="next"
-              onSubmitEditing={() => handleSubmit()}
-              secureTextEntry
-            />
-          </Box>
-          <Box alignItems="center" marginTop="m">
-            <Button variant="primary" label="SignUp" onPress={handleSubmit} />
-          </Box>
+      <Box>
+        <Box marginTop="m" marginBottom="m">
+          {/* Email */}
+          <TextInput
+            icon="mail"
+            placeholder="Enter your Email"
+            onChangeText={handleChange("email")}
+            onBlur={handleBlur("email")}
+            error={errors.email}
+            touched={touched.email}
+            autoCapitalize="none"
+            returnKeyLabel="next"
+            returnKeyType="next"
+            onSubmitEditing={() => password.current?.focus()}
+          />
+        </Box>
+        <Box marginTop="m" marginBottom="m">
+          {/* Password */}
+          <TextInput
+            ref={password}
+            icon="lock"
+            placeholder="Enter your Password"
+            onChangeText={handleChange("password")}
+            onBlur={handleBlur("password")}
+            error={errors.password}
+            touched={touched.password}
+            autoCapitalize="none"
+            returnKeyLabel="next"
+            returnKeyType="next"
+            onSubmitEditing={() => passwordConfirmation.current?.focus()}
+            secureTextEntry
+          />
+        </Box>
+        <Box marginTop="m">
+          {/* Confirm Password */}
+          <TextInput
+            ref={passwordConfirmation}
+            icon="lock"
+            placeholder="Confirm Password"
+            onChangeText={handleChange("passwordConfirmation")}
+            onBlur={handleBlur("passwordConfirmation")}
+            error={errors.passwordConfirmation}
+            touched={touched.passwordConfirmation}
+            autoCapitalize="none"
+            returnKeyLabel="next"
+            returnKeyType="next"
+            onSubmitEditing={() => handleSubmit()}
+            secureTextEntry
+          />
+        </Box>
+        <Box alignItems="center" marginTop="m">
+          <Button variant="primary" label="SignUp" onPress={handleSubmit} />
         </Box>
       </Box>
     </Container>
