@@ -1,16 +1,8 @@
 import React, { useRef } from "react";
 import { TextInput as RNTextInput } from "react-native";
 
-import type { CompositeNavigationProp } from "@react-navigation/native";
-import type { DrawerNavigationProp } from "@react-navigation/drawer";
-import type { StackNavigationProp } from "@react-navigation/stack";
-
 import { Box, Button, Container, Text } from "../Components";
-import {
-  AppRoutes,
-  AuthenticationRoutes,
-  HomeRoutes,
-} from "../Components/Navigation";
+import { AuthNavigationProps } from "../Components/Navigation";
 
 import TextInput from "../Components/Forms/TextInput";
 import Checkbox from "../Components/Forms/Checkbox";
@@ -28,14 +20,7 @@ const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
 });
 
-interface LoginProps {
-  navigation: CompositeNavigationProp<
-    StackNavigationProp<AuthenticationRoutes, "Login">,
-    DrawerNavigationProp<HomeRoutes, "OutfitIdeas">
-  >;
-}
-
-export default function Login({ navigation }: LoginProps) {
+export default function Login({ navigation }: AuthNavigationProps<"Login">) {
   const {
     handleChange,
     handleBlur,
@@ -47,7 +32,7 @@ export default function Login({ navigation }: LoginProps) {
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: "", password: "", remember: false },
-    onSubmit: () => navigation.navigate("OutfitIdeas"),
+    onSubmit: () => navigation.navigate("Home"),
   });
 
   const password = useRef<RNTextInput>(null);

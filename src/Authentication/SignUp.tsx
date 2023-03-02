@@ -1,7 +1,11 @@
 import React, { useRef } from "react";
 import { TextInput as RNTextInput } from "react-native";
 import { Box, Button, Container, Text } from "../Components";
-import { Routes, StackNavigationProps } from "../Components/Navigation";
+import {
+  AuthNavigationProps,
+  Routes,
+  StackNavigationProps,
+} from "../Components/Navigation";
 
 import TextInput from "../Components/Forms/TextInput";
 import Footer from "../Components/Footer";
@@ -20,9 +24,7 @@ const SignUpSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
 });
 
-export default function SignUp({
-  navigation,
-}: StackNavigationProps<Routes, "SignUp">) {
+export default function SignUp({ navigation }: AuthNavigationProps<"SignUp">) {
   const { handleChange, handleBlur, handleSubmit, errors, touched } = useFormik(
     {
       validationSchema: SignUpSchema,
