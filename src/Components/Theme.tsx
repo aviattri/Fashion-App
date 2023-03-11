@@ -19,6 +19,12 @@ export const theme = {
     slideGray: "#F4F0EF",
     darkGrey: "#8A8D90",
     danger: "#FF0058",
+    orange: "#FFA500",
+    yellow: "#FFFF00",
+    pink: "#FFC0CB",
+    violet: "#EE82EE",
+    green: "#008000",
+    purple: "#800080",
   },
   spacing: {
     s: 8,

@@ -17,3 +17,7 @@ export const HomeNavigator = () => (
     <Drawer.Screen name="OutfitIdeas" component={OutfitIdeas} />
   </Drawer.Navigator>
 );
+
+// Thu 3pm
+// https://youtu.be/Cd4vG_A-5EE?list=PLkOyNuxGl9jyhndcnbFcgNM81fZak7Rbw&t=1195
+// working on the overlay image at the bottom
