@@ -9,6 +9,8 @@ import theme, { useTheme } from "../../Components/Theme";
 const { width } = Dimensions.get("window");
 export const DRAWER_WIDTH = width * 0.8;
 
+export const assets = [require("../../../assets/drawer.png")];
+
 const aspectRatio = 750 / 1125;
 const height = DRAWER_WIDTH * aspectRatio;
 
@@ -92,19 +94,7 @@ const Drawer = () => {
       {/* Top-Design-Bottom-Left-Curve */}
       <Box flex={0.8}>
         <Box flex={1} backgroundColor="secondary" />
-        <Box flex={1} backgroundColor="primary" />
         {/* Image */}
-        <Image
-          source={require("../../../assets/pattern1.png")}
-          style={{
-            position: "absolute",
-            bottom: -height * 0.61,
-            width: DRAWER_WIDTH,
-            left: 0,
-            right: 0,
-            height: height,
-          }}
-        />
         <Box
           position="absolute"
           top={0}
@@ -143,16 +133,17 @@ const Drawer = () => {
         </Box>
       </Box>
       {/* Bottom Design */}
-      <Box backgroundColor="white" width={DRAWER_WIDTH} height={height * 0.61}>
+      <Box
+        backgroundColor="white"
+        width={DRAWER_WIDTH}
+        overflow="hidden"
+        height={height * 0.61}
+      >
         <Image
-          source={require("../../../assets/pattern1.png")}
+          source={assets[0]}
           style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: -height * (1 - 0.61),
             width: DRAWER_WIDTH,
-            height: height,
+            height,
             borderTopLeftRadius: theme.borderRadii.xl,
           }}
         />

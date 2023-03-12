@@ -8,9 +8,9 @@ import { ThemeProvider } from "@shopify/restyle";
 import { theme } from "./src/Components/Theme";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createStackNavigator } from "@react-navigation/stack";
-import { HomeNavigator } from "./src/Home";
+import { HomeNavigator, assets as HomeAssets } from "./src/Home";
 import { AppRoutes } from "./src/Components/Navigation";
-const assets = [...AuthenticationAssets];
+const assets = [...AuthenticationAssets, ...HomeAssets];
 
 const fonts = {
   "SFProDisplay-Bold": require("./assets/fonts/SFPro-Display-Bold.ttf"),
