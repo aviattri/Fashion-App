@@ -73,6 +73,12 @@ export const theme = {
       color: "primary",
       textAlign: "center",
     },
+    header: {
+      fontSize: 12,
+      lineHeight: 24,
+      fontFamily: "SFProDisplay-Semibold",
+      color: "secondary",
+    },
   },
 };
 export const Text = createText<Theme>();

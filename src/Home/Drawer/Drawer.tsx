@@ -5,6 +5,7 @@ import { Box, RoundedIconButton, Text } from "../../Components";
 
 import DrawerItem, { DrawerItemsProps } from "./DrawerItem";
 import theme, { useTheme } from "../../Components/Theme";
+import Header from "../../Components/Header";
 
 const { width } = Dimensions.get("window");
 export const DRAWER_WIDTH = width * 0.8;
@@ -66,28 +67,18 @@ const Drawer = () => {
           bottom={0}
           borderBottomRightRadius="xl"
           backgroundColor="secondary"
-          paddingHorizontal="m"
-          justifyContent="space-between"
-          flexDirection="row"
-          paddingTop="xl"
         >
           {/* System Tray */}
-          <RoundedIconButton
-            name="x"
-            color="white"
-            size={24}
-            backgroundColor="secondary"
-            onPress={() => true}
-          />
-          <Text color="white" variant="title1">
-            My Profile
-          </Text>
-          <RoundedIconButton
-            name="shopping-bag"
-            color="white"
-            size={24}
-            backgroundColor="secondary"
-            onPress={() => true}
+          <Header
+            title="Menu"
+            left={{
+              icon: "x",
+              onPress: () => true,
+            }}
+            right={{
+              icon: "shopping-bag",
+              onPress: () => true,
+            }}
           />
         </Box>
       </Box>
