@@ -3,6 +3,7 @@ import { Box } from "../../Components";
 import Header from "../../Components/Header";
 import { HomeNavigationProps } from "../../Components/Navigation";
 import Background from "./Background";
+import Card from "./Card";
 
 const OutfitIdea = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
   return (
@@ -19,16 +20,17 @@ const OutfitIdea = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
           onPress: () => console.log("pressed"),
         }}
       />
-      {/* Outfit Screen 
-        // `overlay` positioned 
-        // ListView compoenent 
-        // Cards compoenent
-      */}
-      {/* Background component 
-        // `absolutely` positioned 
-      */}
+      {/* ListView compoenent  */}
+      {/* Background component */}
       <Box flex={1}>
+        {/* `absolutely` positioned  */}
         <Background />
+        {/* Cards compoenent
+             -> The color, scale, and the translation of the card depends on its position
+        */}
+        <Card position={1} />
+        <Card position={0.5} />
+        <Card position={0} />
       </Box>
     </Box>
   );
