@@ -33,7 +33,7 @@ const Header = ({ title, left, right, dark }: HeaderProps) => {
         name={left.icon}
         iconRatio={0.4}
         size={44}
-        onPress={() => left.onPress}
+        onPress={left.onPress}
         {...{ color, backgroundColor }}
       />
       <Text variant="header" {...{ color }}>
@@ -44,7 +44,7 @@ const Header = ({ title, left, right, dark }: HeaderProps) => {
         name="shopping-bag"
         size={44}
         iconRatio={0.4}
-        onPress={() => right.onPress}
+        onPress={right.onPress}
         {...{ color, backgroundColor }}
       />
     </Box>

@@ -1,8 +1,9 @@
 import React from "react";
 import { Box } from "../../Components";
 import Header from "../../Components/Header";
+import { HomeNavigationProps } from "../../Components/Navigation";
 
-const OutfitIdea = () => {
+const OutfitIdea = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
   return (
     <Box>
       {/* Header Component */}
@@ -10,7 +11,7 @@ const OutfitIdea = () => {
         title="Outfit Ideas"
         left={{
           icon: "menu",
-          onPress: () => console.log("pressed"),
+          onPress: () => navigation.openDrawer(),
         }}
         right={{
           icon: "shopping-bag",

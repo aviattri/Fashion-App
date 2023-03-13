@@ -1,5 +1,6 @@
-import { createDrawerNavigator } from "@react-navigation/drawer";
 import * as React from "react";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+
 import { HomeRoutes } from "../Components/Navigation";
 
 import DrawerContent, { DRAWER_WIDTH } from "./Drawer";
@@ -12,7 +13,7 @@ const Drawer = createDrawerNavigator<HomeRoutes>();
 
 export const HomeNavigator = () => (
   <Drawer.Navigator
-    drawerContent={DrawerContent}
+    drawerContent={() => <DrawerContent />}
     drawerStyle={{
       width: DRAWER_WIDTH,
     }}
