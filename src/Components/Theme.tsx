@@ -26,6 +26,7 @@ export const theme = {
     violet: "#EE82EE",
     green: "#008000",
     purple: "#800080",
+    lightBlue: "#BFEAF5",
   },
   spacing: {
     s: 8,

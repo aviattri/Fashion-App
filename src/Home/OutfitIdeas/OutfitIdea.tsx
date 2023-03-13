@@ -2,10 +2,11 @@ import React from "react";
 import { Box } from "../../Components";
 import Header from "../../Components/Header";
 import { HomeNavigationProps } from "../../Components/Navigation";
+import Background from "./Background";
 
 const OutfitIdea = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
   return (
-    <Box>
+    <Box flex={1} backgroundColor="white">
       {/* Header Component */}
       <Header
         title="Outfit Ideas"
@@ -18,6 +19,17 @@ const OutfitIdea = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
           onPress: () => console.log("pressed"),
         }}
       />
+      {/* Outfit Screen 
+        // `overlay` positioned 
+        // ListView compoenent 
+        // Cards compoenent
+      */}
+      {/* Background component 
+        // `absolutely` positioned 
+      */}
+      <Box flex={1}>
+        <Background />
+      </Box>
     </Box>
   );
 };
