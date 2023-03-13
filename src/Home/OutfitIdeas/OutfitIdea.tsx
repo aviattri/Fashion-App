@@ -1,14 +1,23 @@
-import { View, Text } from "react-native";
 import React from "react";
+import { Box } from "../../Components";
+import Header from "../../Components/Header";
 
 const OutfitIdea = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "red",
-      }}
-    ></View>
+    <Box>
+      {/* Header Component */}
+      <Header
+        title="Outfit Ideas"
+        left={{
+          icon: "menu",
+          onPress: () => console.log("pressed"),
+        }}
+        right={{
+          icon: "shopping-bag",
+          onPress: () => console.log("pressed"),
+        }}
+      />
+    </Box>
   );
 };
 

@@ -79,6 +79,7 @@ const Drawer = () => {
               icon: "shopping-bag",
               onPress: () => true,
             }}
+            dark
           />
         </Box>
       </Box>

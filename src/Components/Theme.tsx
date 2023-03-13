@@ -18,6 +18,7 @@ export const theme = {
     grey: "rgba(12, 13,52, 0.05)",
     slideGray: "#F4F0EF",
     darkGrey: "#8A8D90",
+    lightGrey: "#FAFAFA",
     danger: "#FF0058",
     orange: "#FFA500",
     yellow: "#FFFF00",
