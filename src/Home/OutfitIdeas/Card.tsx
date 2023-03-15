@@ -12,7 +12,8 @@ import theme from "../../Components/Theme";
 import { PanGestureHandler } from "react-native-gesture-handler";
 
 interface CardProps {
-  position: number;
+  position: Animated.Node<number>;
+  onSwipe: () => void;
 }
 
 const { width: wWidth } = Dimensions.get("window");
@@ -20,21 +21,24 @@ const width = wWidth * 0.8;
 const height = width * (425 / 294);
 const borderRadius = 24;
 
-const Card = ({ position }: CardProps) => {
+const Card = ({ position, onSwipe }: CardProps) => {
   // Anyone following RN-Fashion by William and stuck at part 12, with mixColor()
 
   // The Animated.Adaptable type is used to represent a value that can either
   // be an Animated.Value or a number, but it is not assignable to the position
-  //  property in the style object.
+  // property in the style object.
 
   // If you want to animate the position of the Animated.View
   // component, you need to create an Animated.Value and use it
-  //  as the position value. Here's an example of how you can animate
-  //  the position using an Animated.Value:
+  // as the position value. Here's an example of how you can animate
+  // the position using an Animated.Value:
 
-  const [pos] = useState(new Animated.Value(position));
+  // ** Previous approach with mixing backgroundColor using Aninmated.Value
+  // const [pos] = useState(new Animated.Value(position));
+  // const backgroundColor = mixColor(pos, "#C9E9F7", "#74BCB8");
 
-  const backgroundColor = mixColor(pos, "#C9E9F7", "#74BCB8");
+  // ** Current approach with Animated.Node
+  const backgroundColor = mixColor(position, "#C9E9F7", "#74BCB8");
 
   const scale = mix(position, 1, 0.9);
 
@@ -48,6 +52,8 @@ const Card = ({ position }: CardProps) => {
     velocity: velocity.y,
     state,
     snapPoints: [-width, 0, width],
+    //if there is atleast 1 card in the queue than swipe
+    onSnap: ([x]) => x !== 0 && onSwipe(),
   });
 
   const translateY = add(
