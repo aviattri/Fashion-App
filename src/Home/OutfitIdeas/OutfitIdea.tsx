@@ -5,7 +5,7 @@ import { HomeNavigationProps } from "../../Components/Navigation";
 import Background from "./Background";
 import Card from "./Card";
 import { useTransition } from "react-native-redash";
-import { interpolate, sub } from "react-native-reanimated";
+import { sub } from "react-native-reanimated";
 
 //  Cards Array
 //  Here the order matters, item with the last index at 0 would be the first one to be placed in the queue
@@ -74,7 +74,7 @@ const OutfitIdea = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
                 onSwipe={() => {
                   setCurrentIndex((prev) => prev + step);
                 }}
-                source={source}
+                {...{ source, step }}
               />
             )
         )}

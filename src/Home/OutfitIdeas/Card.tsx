@@ -1,22 +1,23 @@
-import {
-  Dimensions,
-  StyleSheet,
-  Image,
-  ImageSourcePropType,
-  ImageRequireSource,
-} from "react-native";
-import React, { useState } from "react";
+import React from "react";
+import { Dimensions, StyleSheet, ImageRequireSource } from "react-native";
+
 import { PanGestureHandler } from "react-native-gesture-handler";
 import { mix, mixColor, usePanGestureHandler } from "react-native-redash";
-import Animated, { add } from "react-native-reanimated";
+
+import Animated, {
+  Extrapolate,
+  add,
+  interpolateNode,
+} from "react-native-reanimated";
 
 import { useSpring } from "./Animations";
 import { Box } from "../../Components";
 
 interface CardProps {
-  position: Animated.Value<number>;
+  position: Animated.Node<number>;
   onSwipe: () => void;
   source: ImageRequireSource;
+  step: number;
 }
 
 const { width: wWidth } = Dimensions.get("window");
@@ -24,7 +25,7 @@ const width = wWidth * 0.8;
 const height = width * (425 / 294);
 const borderRadius = 24;
 
-const Card = ({ position, onSwipe, source }: CardProps) => {
+const Card = ({ position, onSwipe, source, step }: CardProps) => {
   // Anyone following RN-Fashion by William and stuck at part 12, with mixColor()
 
   // The Animated.Adaptable type is used to represent a value that can either
@@ -44,6 +45,12 @@ const Card = ({ position, onSwipe, source }: CardProps) => {
   const backgroundColor = mixColor(position, "#C9E9F7", "#74BCB8");
 
   const scale = mix(position, 1, 0.9);
+
+  const imageScale = interpolateNode(position, {
+    inputRange: [0, step],
+    outputRange: [1, 0.8],
+    extrapolate: Extrapolate.CLAMP,
+  });
 
   const { gestureHandler, translation, velocity, state } =
     usePanGestureHandler();
@@ -78,7 +85,7 @@ const Card = ({ position, onSwipe, source }: CardProps) => {
       <PanGestureHandler {...gestureHandler}>
         <Animated.View
           style={{
-            backgroundColor: backgroundColor,
+            backgroundColor,
             width,
             height,
             borderRadius,
@@ -86,12 +93,14 @@ const Card = ({ position, onSwipe, source }: CardProps) => {
             overflow: "hidden",
           }}
         >
-          <Image
+          <Animated.Image
             {...{ source }}
             style={{
-              width: "100%",
-              height: "100%",
+              ...StyleSheet.absoluteFillObject,
+              width: undefined,
+              height: undefined,
               resizeMode: "contain",
+              transform: [{ scale: imageScale }],
             }}
           />
         </Animated.View>
