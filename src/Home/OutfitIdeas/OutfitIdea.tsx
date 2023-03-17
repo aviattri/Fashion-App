@@ -13,15 +13,19 @@ import { interpolate, sub } from "react-native-reanimated";
 const cards = [
   {
     index: 3,
+    source: require("../../../assets/4.png"),
   },
   {
     index: 2,
+    source: require("../../../assets/3.png"),
   },
   {
     index: 1,
+    source: require("../../../assets/2.png"),
   },
   {
     index: 0,
+    source: require("../../../assets/1.png"),
   },
 ];
 
@@ -62,7 +66,7 @@ const OutfitIdea = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
              -> The color, scale, and the translation of the card depends on its position
         */}
         {cards.map(
-          ({ index }) =>
+          ({ index, source }) =>
             currentIndex < index * step + step && (
               <Card
                 key={index}
@@ -70,6 +74,7 @@ const OutfitIdea = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
                 onSwipe={() => {
                   setCurrentIndex((prev) => prev + step);
                 }}
+                source={source}
               />
             )
         )}

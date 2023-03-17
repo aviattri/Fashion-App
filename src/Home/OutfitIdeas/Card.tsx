@@ -1,19 +1,22 @@
-import { Dimensions, StyleSheet } from "react-native";
-import React, { useState } from "react";
-import Animated, { add } from "react-native-reanimated";
-import { Box } from "../../Components";
 import {
-  mix,
-  mixColor,
-  usePanGestureHandler,
-  withSpring,
-} from "react-native-redash";
-import theme from "../../Components/Theme";
+  Dimensions,
+  StyleSheet,
+  Image,
+  ImageSourcePropType,
+  ImageRequireSource,
+} from "react-native";
+import React, { useState } from "react";
 import { PanGestureHandler } from "react-native-gesture-handler";
+import { mix, mixColor, usePanGestureHandler } from "react-native-redash";
+import Animated, { add } from "react-native-reanimated";
+
+import { useSpring } from "./Animations";
+import { Box } from "../../Components";
 
 interface CardProps {
-  position: Animated.Node<number>;
+  position: Animated.Value<number>;
   onSwipe: () => void;
+  source: ImageRequireSource;
 }
 
 const { width: wWidth } = Dimensions.get("window");
@@ -21,7 +24,7 @@ const width = wWidth * 0.8;
 const height = width * (425 / 294);
 const borderRadius = 24;
 
-const Card = ({ position, onSwipe }: CardProps) => {
+const Card = ({ position, onSwipe, source }: CardProps) => {
   // Anyone following RN-Fashion by William and stuck at part 12, with mixColor()
 
   // The Animated.Adaptable type is used to represent a value that can either
@@ -47,18 +50,18 @@ const Card = ({ position, onSwipe }: CardProps) => {
 
   const translateYOffset = mix(position, 0, -50);
 
-  const translateX = withSpring({
+  const translateX = useSpring({
     value: translation.x,
     velocity: velocity.y,
     state,
-    snapPoints: [-width, 0, width],
+    snapPoints: [-wWidth, 0, width],
     //if there is atleast 1 card in the queue than swipe
     onSnap: ([x]) => x !== 0 && onSwipe(),
   });
 
   const translateY = add(
     translateYOffset,
-    withSpring({
+    useSpring({
       value: translation.y,
       velocity: velocity.y,
       state,
@@ -80,8 +83,18 @@ const Card = ({ position, onSwipe }: CardProps) => {
             height,
             borderRadius,
             transform: [{ translateY }, { scale }, { translateX }],
+            overflow: "hidden",
           }}
-        />
+        >
+          <Image
+            {...{ source }}
+            style={{
+              width: "100%",
+              height: "100%",
+              resizeMode: "contain",
+            }}
+          />
+        </Animated.View>
       </PanGestureHandler>
     </Box>
   );
