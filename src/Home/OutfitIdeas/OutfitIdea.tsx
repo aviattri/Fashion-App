@@ -6,6 +6,7 @@ import Background from "./Background";
 import Card from "./Card";
 import { useTransition } from "react-native-redash";
 import { sub } from "react-native-reanimated";
+import Categories from "./Categories";
 
 //  Cards Array
 //  Here the order matters, item with the last index at 0 would be the first one to be placed in the queue
@@ -58,10 +59,13 @@ const OutfitIdea = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
         }}
       />
       {/* ListView compoenent  */}
+      <Categories />
+
       {/* Background component */}
       <Box flex={1}>
         {/* `absolutely` positioned  */}
         <Background />
+
         {/* Cards compoenent
              -> The color, scale, and the translation of the card depends on its position
         */}
