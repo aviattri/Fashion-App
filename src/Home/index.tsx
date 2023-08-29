@@ -5,6 +5,7 @@ import { HomeRoutes } from "../Components/Navigation";
 
 import DrawerContent, { DRAWER_WIDTH } from "./Drawer";
 import OutfitIdeas from "./OutfitIdeas";
+import FavouriteOutfits from "./FavouriteOutfits";
 
 // Import Assets in bunch
 export { assets } from "./Drawer";
@@ -19,5 +20,6 @@ export const HomeNavigator = () => (
     }}
   >
     <Drawer.Screen name="OutfitIdeas" component={OutfitIdeas} />
+    <Drawer.Screen name="FavouriteOutfits" component={FavouriteOutfits} />
   </Drawer.Navigator>
 );

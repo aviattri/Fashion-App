@@ -122,7 +122,7 @@ const Drawer = () => {
           </Box>
           {/* Drawer Item */}
           {items.map((item) => (
-            <DrawerItem key={item.screen} {...item} />
+            <DrawerItem key={item.icon} {...item} />
           ))}
         </Box>
       </Box>
