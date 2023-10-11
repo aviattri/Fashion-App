@@ -25,7 +25,7 @@ const FavouriteOutfits = ({
   navigation,
 }: HomeNavigationProps<"FavouriteOutfits">) => {
   const width = (wWidth - theme.spacing.m * 3) / 2;
-
+  const [FooterHeights, setFooterHeight] = React.useState(0);
   return (
     <Box flex={1} backgroundColor="white">
       <Header
@@ -33,8 +33,12 @@ const FavouriteOutfits = ({
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
         right={{ icon: "shopping-bag", onPress: () => true }}
       />
+      <Box flex={1} />
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: theme.spacing.m }}
+        contentContainerStyle={{
+          paddingHorizontal: theme.spacing.m,
+          paddingBottom: FooterHeights,
+        }}
       >
         <Box flexDirection="row">
           <Box marginRight="m">
@@ -53,7 +57,20 @@ const FavouriteOutfits = ({
           </Box>
         </Box>
       </ScrollView>
-      <Footer label="Add to Favourites" onPress={() => null} />
+      {/* This footer is overlay */}
+      <Box
+        position="absolute"
+        bottom={0}
+        left={0}
+        right={0}
+        onLayout={({
+          nativeEvent: {
+            layout: { height },
+          },
+        }) => setFooterHeight(height)}
+      >
+        <Footer label="Add to Favourites" onPress={() => null} />
+      </Box>
     </Box>
   );
 };
