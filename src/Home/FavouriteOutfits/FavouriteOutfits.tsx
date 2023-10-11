@@ -26,6 +26,8 @@ const FavouriteOutfits = ({
 }: HomeNavigationProps<"FavouriteOutfits">) => {
   const width = (wWidth - theme.spacing.m * 3) / 2;
   const [FooterHeights, setFooterHeight] = React.useState(0);
+  const [outfits, setOutfits] = React.useState(defaultOutfits);
+
   return (
     <Box flex={1} backgroundColor="white">
       <Header
@@ -42,14 +44,14 @@ const FavouriteOutfits = ({
       >
         <Box flexDirection="row">
           <Box marginRight="m">
-            {defaultOutfits
+            {outfits
               .filter((_, i) => i % 2 !== 0)
               .map((outfit) => (
                 <Outfit key={outfit.id} outfit={outfit} width={width} />
               ))}
           </Box>
           <Box>
-            {defaultOutfits
+            {outfits
               .filter((_, i) => i % 2 === 0)
               .map((outfit) => (
                 <Outfit key={outfit.id} outfit={outfit} width={width} />
@@ -69,7 +71,12 @@ const FavouriteOutfits = ({
           },
         }) => setFooterHeight(height)}
       >
-        <Footer label="Add to Favourites" onPress={() => null} />
+        <Footer
+          label="Add to Favourites"
+          onPress={() => {
+            setOutfits(outfits.filter((outfit) => !outfit.selected));
+          }}
+        />
       </Box>
     </Box>
   );

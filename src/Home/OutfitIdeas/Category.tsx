@@ -1,7 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import React from "react";
-import { Box, Text } from "../../Components";
-import BorderlessTap from "./BorderlessTap";
+import { Box, Text, BorderlessTap } from "../../Components";
 
 const INNER_RADIUS = 30;
 const OUTER_RADIUS = 34;
@@ -20,7 +19,7 @@ const Category = ({
   const [selected, setSelected] = React.useState(false);
 
   return (
-    // an alternative way of updating state using the
+    // an alternative way of upda ting state using the
     //   functional form of setState (or the useState hook, in this case),
     //    which takes a callback function as an argument.
     //    This callback function receives the previous state as its argument,
