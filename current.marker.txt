@@ -1,0 +1,5 @@
+chapter 15 done
+ - transitions left
+ - outfit ideas screen 
+ - ability to select outfits
+chapter 16
