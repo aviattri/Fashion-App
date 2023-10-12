@@ -3,3 +3,5 @@ chapter 15 done
  - outfit ideas screen 
  - ability to select outfits
 chapter 16
+  - transitions fixed 
+  - pointer @ 4:02 - add curve to the footer using svg

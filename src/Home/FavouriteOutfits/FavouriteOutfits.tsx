@@ -29,13 +29,17 @@ const defaultOutfits = [
 const FavouriteOutfits = ({
   navigation,
 }: HomeNavigationProps<"FavouriteOutfits">) => {
+  const transition = (
+    <Transition.Together>
+      <Transition.Change interpolation="easeInOut" durationMs={1000} />
+    </Transition.Together>
+  );
+  const list = React.useRef<Transitioning>(null);
+
   const width = (wWidth - theme.spacing.m * 3) / 2;
-  const left = React.useRef<Transitioning>(null);
-  const right = React.useRef<Transitioning>(null);
 
   const [FooterHeights, setFooterHeight] = React.useState(0);
   const [outfits, setOutfits] = React.useState(defaultOutfits);
-  const transition = <Transition.Change interpolation="easeInOut" />;
 
   return (
     <Box flex={1} backgroundColor="white">
@@ -51,26 +55,24 @@ const FavouriteOutfits = ({
           paddingBottom: FooterHeights,
         }}
       >
-        <Box flexDirection="row">
-          <Box marginRight="m">
-            <Transitioning.View ref={left} {...{ transition }}>
+        <Transitioning.View ref={list} transition={transition}>
+          <Box flexDirection="row">
+            <Box marginRight="m">
               {outfits
-                .filter((_, i) => i % 2 !== 0)
+                .filter(({ id }) => id % 2 !== 0)
                 .map((outfit) => (
                   <Outfit key={outfit.id} outfit={outfit} width={width} />
                 ))}
-            </Transitioning.View>
-          </Box>
-          <Box>
-            <Transitioning.View ref={right} {...{ transition }}>
+            </Box>
+            <Box>
               {outfits
-                .filter((_, i) => i % 2 === 0)
+                .filter(({ id }) => id % 2 === 0)
                 .map((outfit) => (
                   <Outfit key={outfit.id} outfit={outfit} width={width} />
                 ))}
-            </Transitioning.View>
+            </Box>
           </Box>
-        </Box>
+        </Transitioning.View>
       </ScrollView>
       {/* This footer is overlay */}
       <Box
@@ -88,8 +90,7 @@ const FavouriteOutfits = ({
           label="Add to Favourites"
           onPress={() => {
             //Filter out the selected outfits
-            left.current.animateNextTransition();
-            right.current.animateNextTransition();
+            list.current.animateNextTransition();
             setOutfits(outfits.filter((outfit) => !outfit.selected));
           }}
         />
