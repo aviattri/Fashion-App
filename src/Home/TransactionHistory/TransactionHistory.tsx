@@ -2,6 +2,36 @@ import React from "react";
 import { Box, Header, Text } from "../../Components";
 import { HomeNavigationProps } from "../../Components/Navigation";
 
+const Data = [
+  {
+    date: new Date("2023-09-01").getTime(),
+    value: 0,
+  },
+  {
+    date: new Date("2023-10-01").getTime(),
+    value: 0,
+  },
+  {
+    date: new Date("2023-11-01").getTime(),
+    value: 139.51,
+  },
+  {
+    date: new Date("2023-12-01").getTime(),
+    value: 231.44,
+  },
+  {
+    date: new Date("2024-01-01").getTime(),
+    value: 0,
+  },
+  {
+    date: new Date("2024-02-01").getTime(),
+    value: 193.22,
+  },
+  {
+    date: new Date("2023-03-01").getTime(),
+    value: 0,
+  },
+];
 const TransactionHistory = ({
   navigation,
 }: HomeNavigationProps<"TransactionHistory">) => {
