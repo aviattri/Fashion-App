@@ -42,6 +42,12 @@ export const theme = {
   },
   breakpoints: {},
   textVariants: {
+    defaults: {
+      fontSize: 13,
+      fontFamily: "SFProDisplay-Regular",
+      textAlign: "center",
+      color: "primary",
+    },
     hero: {
       fontSize: 80,
       lineHeight: 80,
