@@ -30,7 +30,7 @@ const Header = ({ title, left, right, dark }: HeaderProps) => {
     >
       {/* Left Icon */}
       <RoundedIconButton
-        name={left.icon}
+        name={left?.icon}
         iconRatio={0.4}
         size={44}
         onPress={left.onPress}
@@ -41,7 +41,7 @@ const Header = ({ title, left, right, dark }: HeaderProps) => {
       </Text>
       {/* Right Icon */}
       <RoundedIconButton
-        name="shopping-bag"
+        name={right?.icon}
         size={44}
         iconRatio={0.4}
         onPress={right.onPress}
