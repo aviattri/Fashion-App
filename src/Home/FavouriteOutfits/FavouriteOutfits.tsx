@@ -10,6 +10,7 @@ import {
 } from "react-native-reanimated";
 import Footer from "./Footer";
 import Outfit from "./Outfit";
+import TopCurve from "./TopCurve";
 
 interface FavouriteOutfits {}
 
@@ -38,7 +39,7 @@ const FavouriteOutfits = ({
 
   const width = (wWidth - theme.spacing.m * 3) / 2;
 
-  const [FooterHeights, setFooterHeight] = React.useState(0);
+  const [footerHeight, setFooterHeight] = React.useState(0);
   const [outfits, setOutfits] = React.useState(defaultOutfits);
 
   return (
@@ -52,7 +53,7 @@ const FavouriteOutfits = ({
       <ScrollView
         contentContainerStyle={{
           paddingHorizontal: theme.spacing.m,
-          paddingBottom: FooterHeights,
+          paddingBottom: footerHeight,
         }}
       >
         <Transitioning.View ref={list} transition={transition}>
@@ -74,6 +75,9 @@ const FavouriteOutfits = ({
           </Box>
         </Transitioning.View>
       </ScrollView>
+
+      {/* Overlay Curve to match UI Design */}
+      <TopCurve footerHeight={footerHeight} />
       {/* This footer is overlay */}
       <Box
         position="absolute"
