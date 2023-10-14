@@ -1,8 +1,9 @@
 import React from "react";
 import { Box, Header, Text } from "../../Components";
 import { HomeNavigationProps } from "../../Components/Navigation";
+import Graph from "./Graph";
 
-const Data = [
+const data = [
   {
     date: new Date("2023-09-01").getTime(),
     value: 0,
@@ -42,7 +43,8 @@ const TransactionHistory = ({
         right={{ icon: "share", onPress: () => console.log("share") }}
         title={"Transaction Histroy"}
       />
-      {/* Transaction Header  */}
+
+      {/* User Total Spent Details  */}
       <Box
         padding="m"
         flexDirection="row"
@@ -60,6 +62,10 @@ const TransactionHistory = ({
         <Box backgroundColor="primaryLight" borderRadius="m" padding="s">
           <Text>All Time</Text>
         </Box>
+      </Box>
+      {/* User Shopping Stats   */}
+      <Box padding="m">
+        <Graph data={data} />
       </Box>
     </Box>
   );
