@@ -1,18 +1,18 @@
 import { View, Text, Dimensions } from "react-native";
 import React from "react";
-import { Box, useTheme } from "../../Components";
+import { Box, useTheme, Theme } from "../../Components/Theme";
 
 const { width: wWidth } = Dimensions.get("window");
 const aspectRatio = 195 / 305;
 
-interface Point {
+export interface DataPoint {
   date: number;
   value: number;
   color: keyof Theme["colors"];
 }
 
 interface GraphProps {
-  data: Point[];
+  data: DataPoint[];
 }
 
 const lerp = (v0: number, v1: number, t: number) => {
@@ -39,6 +39,7 @@ const Graph = ({ data }: GraphProps) => {
   return (
     <Box width={width} height={height}>
       {data.map((point, i) => {
+        console.log("color val", point.color);
         if (point.value === 0) {
           return null;
         }
@@ -51,29 +52,26 @@ const Graph = ({ data }: GraphProps) => {
             width={step}
             height={lerp(0, height, point.value / height)}
           >
-            <View
-              style={{
-                position: "absolute",
-                top: 0,
-                bottom: 0,
-                left: theme.spacing.m,
-                right: theme.spacing.m,
-                backgroundColor: theme.colors.primaryLight,
-                borderTopLeftRadius: theme.borderRadii.m,
-                borderTopRightRadius: theme.borderRadii.m,
-              }}
+            <Box
+              position={"absolute"}
+              top={0}
+              bottom={0}
+              opacity={0.1}
+              left={theme.spacing.m}
+              right={theme.spacing.m}
+              backgroundColor={point.color}
+              borderTopLeftRadius="m"
+              borderTopRightRadius="m"
             />
-            <View
-              style={{
-                position: "absolute",
-                top: 0,
-                bottom: 0,
-                height: 32,
-                left: theme.spacing.m,
-                right: theme.spacing.m,
-                backgroundColor: theme.colors.primary,
-                borderRadius: theme.borderRadii.m,
-              }}
+            <Box
+              position={"absolute"}
+              top={0}
+              bottom={0}
+              height={32}
+              left={theme.spacing.m}
+              right={theme.spacing.m}
+              backgroundColor={point.color}
+              borderRadius="m"
             />
           </Box>
         );

@@ -1,36 +1,43 @@
 import React from "react";
 import { Box, Header, Text } from "../../Components";
 import { HomeNavigationProps } from "../../Components/Navigation";
-import Graph from "./Graph";
+import Graph, { DataPoint } from "./Graph";
 
-const data = [
+const data: DataPoint[] = [
   {
     date: new Date("2023-09-01").getTime(),
     value: 0,
+    color: "primary",
   },
   {
     date: new Date("2023-10-01").getTime(),
     value: 0,
+    color: "danger",
   },
   {
     date: new Date("2023-11-01").getTime(),
     value: 139.51,
+    color: "primary",
   },
   {
     date: new Date("2023-12-01").getTime(),
     value: 231.44,
+    color: "orange",
   },
   {
     date: new Date("2024-01-01").getTime(),
     value: 0,
+    color: "primary",
   },
   {
     date: new Date("2024-02-01").getTime(),
     value: 193.22,
+    color: "danger",
   },
   {
     date: new Date("2023-03-01").getTime(),
     value: 0,
+    color: "primary",
   },
 ];
 const TransactionHistory = ({
