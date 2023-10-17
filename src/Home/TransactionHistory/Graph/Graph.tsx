@@ -1,7 +1,7 @@
 import { View, Text, Dimensions } from "react-native";
 import React from "react";
 import { Box, useTheme, Theme } from "../../../Components/Theme";
-import Underlay from "./Underlay";
+import Underlay, { MARGIN } from "./Underlay";
 import { lerp } from "./Scale";
 
 const { width: wWidth } = Dimensions.get("window");
@@ -22,8 +22,8 @@ const Graph = ({ data }: GraphProps) => {
   const canvaWidth = wWidth - theme.spacing.m * 2;
   const canvaHeight = canvaWidth * aspectRatio;
 
-  const width = canvaWidth - theme.spacing.l;
-  const height = canvaHeight - theme.spacing.s / canvaWidth;
+  const width = canvaWidth - theme.spacing[MARGIN];
+  const height = canvaHeight - theme.spacing[MARGIN] / canvaWidth;
 
   const step = width / data.length;
 
@@ -39,7 +39,7 @@ const Graph = ({ data }: GraphProps) => {
 
   return (
     // Canva Container
-    <Box marginTop="xl" paddingBottom="l" paddingLeft="l">
+    <Box marginTop="xl" paddingBottom={MARGIN} paddingLeft={MARGIN}>
       {/* Underlay to display dates */}
       <Underlay minY={minY} maxY={maxY} dates={dates} step={step} />
       <Box width={width} height={height}>
