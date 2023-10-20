@@ -3,6 +3,7 @@ import React from "react";
 import { Box, useTheme, Theme } from "../../../Components/Theme";
 import Underlay, { MARGIN } from "./Underlay";
 import { lerp } from "./Scale";
+import moment from "moment";
 
 const { width: wWidth } = Dimensions.get("window");
 const aspectRatio = 195 / 305;
@@ -16,9 +17,11 @@ export interface DataPoint {
 
 interface GraphProps {
   data: DataPoint[];
+  startDate: number;
+  numberOfMonths: number;
 }
 
-const Graph = ({ data }: GraphProps) => {
+const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
   const theme = useTheme();
   const canvaWidth = wWidth - theme.spacing.m * 2;
   const canvaHeight = canvaWidth * aspectRatio;
@@ -26,7 +29,7 @@ const Graph = ({ data }: GraphProps) => {
   const width = canvaWidth - theme.spacing[MARGIN];
   const height = canvaHeight - theme.spacing[MARGIN] / canvaWidth;
 
-  const step = width / data.length;
+  const step = width / numberOfMonths;
 
   //we need all values to calc mean and max to interpolate in points
   const values = data.map((p) => p.value);
@@ -42,13 +45,17 @@ const Graph = ({ data }: GraphProps) => {
     // Canva Container
     <Box marginTop="xl" paddingBottom={MARGIN} paddingLeft={MARGIN}>
       {/* Underlay to display dates */}
-      <Underlay minY={minY} maxY={maxY} dates={dates} step={step} />
+      <Underlay
+        minY={minY}
+        maxY={maxY}
+        startDate={startDate}
+        numberOfMonths={numberOfMonths}
+        step={step}
+      />
       <Box width={width} height={height}>
-        {data.map((point, i) => {
+        {data.map((point) => {
           console.log("color val", point.color);
-          if (point.value === 0) {
-            return null;
-          }
+          const i = new Date(point.date - startDate).getMonth();
           return (
             <Box
               key={point.date}

@@ -1,6 +1,7 @@
 import React from "react";
 import { DataPoint } from "./Graph";
-import { Box, Text } from "../../Components";
+import { Box, Button, RoundedIconButton, Text } from "../../Components";
+import { BorderlessButton } from "react-native-gesture-handler";
 
 interface TransactionProps {
   transaction: DataPoint;
@@ -8,8 +9,13 @@ interface TransactionProps {
 
 const Transaction = ({ transaction }: TransactionProps) => {
   return (
-    //    Container
-    <Box flex={1} flexDirection="row" justifyContent="space-between" margin="s">
+    // Container
+    <Box
+      alignItems="center"
+      flexDirection="row"
+      justifyContent="space-between"
+      marginTop="l"
+    >
       {/* Details */}
       <Box flexDirection="column" alignItems="flex-start">
         <Box flexDirection="row" alignItems="center">
@@ -24,13 +30,19 @@ const Transaction = ({ transaction }: TransactionProps) => {
           />
           <Text variant="title3">{`#${transaction?.id}`}</Text>
         </Box>
-        <Text color="secondary">{`$${transaction?.value} - ${new Date(
+        <Text color="darkGrey">{`$${transaction?.value} - ${new Date(
           transaction?.date
         ).toLocaleDateString()}`}</Text>
       </Box>
       {/* User Action */}
-      <Box>
-        <Text color="secondary">{`See  More`}</Text>
+      <Box width={100} alignItems="center">
+        <BorderlessButton onPress={() => console.log("see more")}>
+          <Text
+            variant="title3"
+            fontSize={14}
+            color="secondary"
+          >{`See  More`}</Text>
+        </BorderlessButton>
       </Box>
     </Box>
   );

@@ -5,5 +5,6 @@ chapter 15 done
 chapter 16
   - transitions fixed 
   - add curve to the footer using svg
-  - pointer @ 4:02 = Add Graph Component
-  - pointer @ 17:02 = Charts Component (fixing x axis margin)
+  - Add Graph Component
+  - Charts Component (fixing x axis margin)
+  - pointer @ 35:29= 
