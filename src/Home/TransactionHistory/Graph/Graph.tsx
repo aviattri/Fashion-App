@@ -54,8 +54,10 @@ const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
       />
       <Box width={width} height={height}>
         {data.map((point) => {
-          console.log("color val", point.color);
-          const i = new Date(point.date - startDate).getMonth();
+          const i = Math.round(
+            moment.duration(moment(point.date).diff(startDate)).asMonths()
+          );
+
           return (
             <Box
               key={point.date}
