@@ -1,7 +1,8 @@
 import React from "react";
 import { DataPoint } from "./Graph";
-import { Box, Button, RoundedIconButton, Text } from "../../Components";
+import { Box, Text } from "../../Components";
 import { BorderlessButton } from "react-native-gesture-handler";
+import moment from "moment";
 
 interface TransactionProps {
   transaction: DataPoint;
@@ -30,9 +31,9 @@ const Transaction = ({ transaction }: TransactionProps) => {
           />
           <Text variant="title3">{`#${transaction?.id}`}</Text>
         </Box>
-        <Text color="darkGrey">{`$${transaction?.value} - ${new Date(
-          transaction?.date
-        ).toLocaleDateString()}`}</Text>
+        <Text color="darkGrey">{`$${transaction?.value} - ${moment(
+          transaction.date
+        ).format("DD MMMM YYYY")}`}</Text>
       </Box>
       {/* User Action */}
       <Box width={100} alignItems="center">
