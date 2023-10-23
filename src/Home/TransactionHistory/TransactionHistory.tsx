@@ -1,10 +1,24 @@
 import React from "react";
-import { Box, Header, Text } from "../../Components";
+import { StyleSheet, Image, Dimensions } from "react-native";
+import { Box, Header, Text, makeStyles } from "../../Components";
 import { HomeNavigationProps } from "../../Components/Navigation";
 import Graph, { DataPoint } from "./Graph/Graph";
 import Transaction from "./Transaction";
 import { ScrollView } from "react-native-gesture-handler";
-// date: new Date("2023-09-01").getTime(),
+import TopCurve from "./TopCurve";
+
+const footerHeight = Dimensions.get("window").width / 3;
+const useStyles = makeStyles((theme: Theme) => ({
+  footer: {
+    ...StyleSheet.absoluteFillObject,
+    width: undefined,
+    height: undefined,
+    borderTopLeftRadius: theme.borderRadii.xl,
+  },
+  scrollView: {
+    paddingBottom: footerHeight,
+  },
+}));
 
 const startDate = new Date("2023-09-01").getTime();
 const numberOfMonths = 6;
@@ -30,9 +44,11 @@ const data: DataPoint[] = [
     id: 818222,
   },
 ];
+
 const TransactionHistory = ({
   navigation,
 }: HomeNavigationProps<"TransactionHistory">) => {
+  const styles = useStyles();
   return (
     <Box flex={1} backgroundColor="white">
       <Header
@@ -68,11 +84,28 @@ const TransactionHistory = ({
           startDate={startDate}
         />
         {/* Transactions */}
-        <ScrollView>
+        <ScrollView
+          contentContainerStyle={styles.scrollView}
+          showsVerticalScrollIndicator={false}
+        >
           {data.map((transaction) => (
             <Transaction key={transaction?.id} transaction={transaction} />
           ))}
         </ScrollView>
+      </Box>
+      {/* Footer */}
+      <TopCurve {...{ footerHeight }} />
+      <Box
+        position="absolute"
+        left={0}
+        right={0}
+        bottom={0}
+        height={footerHeight}
+      >
+        <Image
+          style={styles.footer}
+          source={require("../../../assets/pattern3.png")}
+        />
       </Box>
     </Box>
   );
