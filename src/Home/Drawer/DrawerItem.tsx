@@ -5,22 +5,35 @@ import { HomeRoutes } from "../../Components/Navigation";
 import { useNavigation } from "@react-navigation/native";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 
-export interface DrawerItemsProps {
+interface BaseDrawerItem {
   icon: string;
   color: keyof Theme["colors"];
-  screen: keyof HomeRoutes;
   label: string;
 }
 
-const DrawerItem = ({ icon, color, screen, label }: DrawerItemsProps) => {
+interface ScreenDrawerItem extends BaseDrawerItem {
+  screen: keyof HomeRoutes;
+}
+
+interface OnPressDrawerItem extends BaseDrawerItem {
+  onPress: (navigation: ReturnType<typeof useNavigation>) => void;
+}
+
+export type DrawerItemProps = ScreenDrawerItem | OnPressDrawerItem;
+
+const DrawerItem = ({ icon, color, label, ...props }: DrawerItemProps) => {
   const theme = useTheme();
 
-  const { navigate } =
+  const navigation =
     useNavigation<DrawerNavigationProp<HomeRoutes, "OutfitIdeas">>();
 
   return (
     <RectButton
-      onPress={() => navigate(screen)}
+      onPress={() =>
+        props.screen
+          ? navigation.navigate(props.screen)
+          : props.onPress(navigation)
+      }
       style={{ borderRadius: theme.borderRadii.m }}
     >
       <Box flexDirection="row" alignItems="center" padding="s">

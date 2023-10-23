@@ -11,6 +11,7 @@ import Footer from "../Components/Footer";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { BorderlessButton } from "react-native-gesture-handler";
+import { CommonActions } from "@react-navigation/native";
 
 const LoginSchema = Yup.object().shape({
   password: Yup.string()
@@ -32,7 +33,13 @@ export default function Login({ navigation }: AuthNavigationProps<"Login">) {
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: "", password: "", remember: false },
-    onSubmit: () => navigation.navigate("Home"),
+    onSubmit: () =>
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "Home" }],
+        })
+      ),
   });
 
   const password = useRef<RNTextInput>(null);
