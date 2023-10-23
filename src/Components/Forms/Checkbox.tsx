@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Text } from "../Theme";
 import { Feather as Icon } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native";
 import { BorderlessButton } from "react-native-gesture-handler";
 
 interface CheckboxProps {
@@ -22,7 +21,7 @@ const Checkbox = ({ label, onChange, checked }: CheckboxProps) => {
           height={20}
           width={20}
           borderRadius="s"
-          backgroundColor={checked ? "primary" : "white"}
+          backgroundColor={checked ? "primary" : "background"}
           borderWidth={1}
           borderColor="primary"
           justifyContent="center"

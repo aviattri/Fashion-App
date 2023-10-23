@@ -30,7 +30,7 @@ const DrawerItem = ({ icon, color, label, ...props }: DrawerItemProps) => {
   return (
     <RectButton
       onPress={() =>
-        props.screen
+        "screen" in props
           ? navigation.navigate(props.screen)
           : props.onPress(navigation)
       }
@@ -42,7 +42,7 @@ const DrawerItem = ({ icon, color, label, ...props }: DrawerItemProps) => {
           backgroundColor={color}
           size={36}
           iconRatio={0.5}
-          color={"white"}
+          color="background"
         />
         <Text variant="button" color="secondary" marginLeft="m">
           {label}

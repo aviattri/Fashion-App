@@ -20,12 +20,6 @@ interface SliderProps {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    overflow: "hidden",
-  },
-
   titleContainer: {
     height: 100,
     justifyContent: "center",

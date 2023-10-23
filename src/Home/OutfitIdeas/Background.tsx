@@ -11,11 +11,15 @@ const Background = () => {
     <View style={StyleSheet.absoluteFill}>
       <Box flex={1 / 3} backgroundColor="lightBlue">
         {/* Overlayed Box with curved bottom right border*/}
-        <Box flex={1} backgroundColor="white" borderBottomRightRadius="xl" />
+        <Box
+          flex={1}
+          backgroundColor="background"
+          borderBottomRightRadius="xl"
+        />
       </Box>
       <Box flex={1 / 3}>
         {/* Primary Flex Box */}
-        <Box flex={1} backgroundColor="white" />
+        <Box flex={1} backgroundColor="background" />
         {/* Secondary Flex Box */}
         <Box flex={1} backgroundColor="secondary" />
         {/* Overlayed Image */}

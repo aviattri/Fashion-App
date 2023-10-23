@@ -21,7 +21,7 @@ export const assets = [picture.src];
 const Welcome = ({ navigation }: AuthNavigationProps<"Welcome">) => {
   const theme = useTheme();
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="background">
       {/* Banner */}
       <Box
         flex={1}
@@ -50,7 +50,7 @@ const Welcome = ({ navigation }: AuthNavigationProps<"Welcome">) => {
           bottom={0}
         />
         <Box
-          backgroundColor="white"
+          backgroundColor="background"
           borderTopLeftRadius="xl"
           justifyContent="space-evenly"
           alignItems="center"

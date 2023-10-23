@@ -45,7 +45,7 @@ const OutfitIdea = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
   // the aIndex - `a` animating index will `animate` from 0 to 0.1, 0.2...
   const aIndex = useTransition(currentIndex);
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="background">
       {/* Header Component */}
       <Header
         title="Outfit Ideas"

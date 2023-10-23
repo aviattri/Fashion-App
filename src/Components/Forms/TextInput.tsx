@@ -54,7 +54,7 @@ const TextInput = forwardRef<RNTextInput, TextInputProps>(
             iconSize={20}
             iconRatio={1}
             backgroundColor={!error ? "primary" : "danger"}
-            color="white"
+            color="background"
           />
         )}
       </Box>

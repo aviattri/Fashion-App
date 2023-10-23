@@ -24,7 +24,7 @@ const PasswordChanged = ({
         <Box flexDirection="row" justifyContent="center">
           <RoundedIconButton
             color="secondary"
-            backgroundColor="white"
+            backgroundColor="background"
             name="x"
             size={60}
             onPress={() => navigation.pop()}

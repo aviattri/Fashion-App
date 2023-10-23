@@ -44,7 +44,7 @@ const FavouriteOutfits = ({
   const [outfits, setOutfits] = React.useState(defaultOutfits);
 
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="background">
       <Header
         title="Outfit Ideas"
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}

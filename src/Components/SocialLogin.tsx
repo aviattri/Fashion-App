@@ -134,7 +134,7 @@ const SocialIcon = ({ children }: SocialIconProps) => {
 
   return (
     <Box
-      backgroundColor="white"
+      backgroundColor="background"
       padding="s"
       width={SIZE}
       height={SIZE}
