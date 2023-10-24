@@ -27,7 +27,7 @@ const Checkbox = ({ label, onChange, checked }: CheckboxProps) => {
           justifyContent="center"
           alignItems="center"
         >
-          {checked && <Icon name="check" />}
+          {checked && <Icon name="check" color={"white"} />}
         </Box>
         <Text variant="button">{label}</Text>
       </Box>

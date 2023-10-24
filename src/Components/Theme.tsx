@@ -8,39 +8,40 @@ import {
   ThemeProvider as ReStyleThemeProvider,
 } from "@shopify/restyle";
 
-export const pallete = {
+export const palette = {
   white: "white",
+  orange: "#FFA500",
+  yellow: "#FFFF00",
+  pink: "#FFC0CB",
+  violet: "#EE82EE",
+  // green: "#008000",
+  purple: "#800080",
+  lightBlue: "#BFEAF5",
+  green: "#2CB9B0",
+  red: "#FF0058",
 };
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => (
-  <ReStyleThemeProvider {...{ theme }}>{children}</ReStyleThemeProvider>
-);
-
-export const theme = {
+const theme = {
   colors: {
-    primary: "#2CB9B0",
+    primary: palette.green,
     secondary: "#0C0D34",
     danger: "#FF0058",
-    primaryLight: "#E7F9F7",
     text: "rgba(12,13,52, 0.7)",
-    background: pallete.white,
+    background: palette.white,
+    background2: "#F4F0EF",
+    info: "#808080",
+
+    primaryLight: "#E7F9F7",
+
+    graph1: palette.orange,
+    graph2: palette.red,
+    drawer1: palette.orange,
+    drawer2: palette.yellow,
+    drawer3: palette.pink,
+    drawer4: palette.violet,
 
     title: "#0C0D34",
     body: "rgba(12,13,52, 0.7)",
-
-    white: "white",
-    grey: "rgba(12, 13,52, 0.05)",
-    slideGray: "#F4F0EF",
-    darkGrey: "#8A8D90",
-    lightGrey: "#FAFAFA",
-
-    orange: "#FFA500",
-    yellow: "#FFFF00",
-    pink: "#FFC0CB",
-    violet: "#EE82EE",
-    green: "#008000",
-    purple: "#800080",
-    lightBlue: "#BFEAF5",
   },
   spacing: {
     s: 8,
@@ -54,7 +55,6 @@ export const theme = {
     l: 25,
     xl: 75,
   },
-  breakpoints: {},
   textVariants: {
     defaults: {
       fontSize: 13,
@@ -66,7 +66,7 @@ export const theme = {
       fontSize: 80,
       lineHeight: 80,
       fontFamily: "SFProDisplay-Bold",
-      color: "white",
+      color: "background",
       textAlign: "center",
     },
     title1: {
@@ -107,7 +107,15 @@ export const theme = {
       color: "secondary",
     },
   },
+  breakpoints: {
+    phone: 0,
+    tablet: 768,
+  },
 };
+
+export const ThemeProvider = ({ children }: { children: ReactNode }) => (
+  <ReStyleThemeProvider {...{ theme }}>{children}</ReStyleThemeProvider>
+);
 export const Text = createText<Theme>();
 export const Box = createBox<Theme>();
 

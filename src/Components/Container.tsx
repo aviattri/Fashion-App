@@ -72,7 +72,6 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
             justifyContent="center"
             padding="xl"
             borderRadius="xl"
-            borderTopLeftRadius={0}
           >
             {children}
           </Box>

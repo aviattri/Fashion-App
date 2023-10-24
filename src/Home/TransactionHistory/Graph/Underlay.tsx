@@ -47,12 +47,12 @@ const Underlay = ({
             >
               {/* Linear interpolation */}
               <Box width={theme.spacing[MARGIN]} paddingRight="s">
-                <Text textAlign="right" color="darkGrey">
+                <Text textAlign="right" color="info">
                   {Math.round(lerp(minY, maxY, t))}
                 </Text>
               </Box>
               {/* X-axis Lines */}
-              <Box flex={1} height={1} backgroundColor="grey" />
+              <Box flex={1} height={1} backgroundColor="background2" />
             </Box>
           );
         })}
@@ -66,7 +66,7 @@ const Underlay = ({
       >
         {datesModified.map((date, index) => (
           <Box width={step}>
-            <Text key={index} color="darkGrey" textAlign="center">
+            <Text key={index} color="info" textAlign="center">
               {date.format("MMM")}
             </Text>
           </Box>

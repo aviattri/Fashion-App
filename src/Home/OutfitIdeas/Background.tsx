@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 import { Box, useTheme } from "../../Components";
+import { palette } from "../../Components/Theme";
 
 interface BackgroundProps {}
 
@@ -9,7 +10,7 @@ const Background = () => {
   return (
     // Absolute positioned box with three sub boxes
     <View style={StyleSheet.absoluteFill}>
-      <Box flex={1 / 3} backgroundColor="lightBlue">
+      <Box flex={1 / 3} style={{ backgroundColor: palette.lightBlue }}>
         {/* Overlayed Box with curved bottom right border*/}
         <Box
           flex={1}
@@ -34,7 +35,7 @@ const Background = () => {
           }}
         />
       </Box>
-      <Box flex={1 / 3} backgroundColor="lightBlue">
+      <Box flex={1 / 3} style={{ backgroundColor: palette.lightBlue }}>
         {/* primary Flex Box */}
         <Box flex={1} backgroundColor="secondary" borderTopLeftRadius="xl" />
       </Box>
