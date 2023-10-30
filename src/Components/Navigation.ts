@@ -1,9 +1,5 @@
 import { DrawerNavigationProp } from "@react-navigation/drawer";
-import {
-  CompositeNavigationProp,
-  Route,
-  RouteProp,
-} from "@react-navigation/native";
+import { CompositeNavigationProp, RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
 export interface AuthNavigationProps<
@@ -39,4 +35,5 @@ export type HomeRoutes = {
   OutfitIdeas: undefined;
   FavouriteOutfits: undefined;
   TransactionHistory: undefined;
+  EditProfile: undefined;
 };
