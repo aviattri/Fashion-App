@@ -1,10 +1,10 @@
-import { Dimensions, View } from "react-native";
-import React from "react";
+import { Dimensions } from "react-native";
+import React, { Children, ReactNode } from "react";
 import { Box, Text } from "../../Components";
-import { BorderlessButton, RectButton } from "react-native-gesture-handler";
+import { BorderlessButton } from "react-native-gesture-handler";
 import { mix, useTransition } from "react-native-redash";
 import theme from "../../Components/Theme";
-import Animated from "react-native-reanimated";
+import Animated, { multiply } from "react-native-reanimated";
 
 const { width } = Dimensions.get("screen");
 
@@ -12,11 +12,16 @@ interface tab {
   id: string;
   title: string;
 }
+
 interface TabsProps {
   tabs: tab[];
+  // We need to translate the content
+  // So we require children property and
+  // each child is going to the be content of the tab
+  children: ReactNode;
 }
 
-const Tabs = ({ tabs }: TabsProps) => {
+const Tabs = ({ tabs, children }: TabsProps) => {
   const [index, setIndex] = React.useState(0);
 
   //animated values for the selected tab acitivity indicator
@@ -24,7 +29,7 @@ const Tabs = ({ tabs }: TabsProps) => {
   const translateX = mix(transition, width * 0.25, width * 0.75);
 
   return (
-    <Box>
+    <Box flex={1}>
       <Box flexDirection="row">
         {/* User Profile Tabs */}
         {tabs.map((tab, i) => (
@@ -54,6 +59,22 @@ const Tabs = ({ tabs }: TabsProps) => {
           }}
         />
       </Box>
+      {/* Children with animated view to display user info content */}
+      <Animated.View
+        style={{
+          flex: 1,
+          width: width * tabs.length,
+          flexDirection: "row",
+
+          transform: [{ translateX: multiply(-width, transition) }],
+        }}
+      >
+        {Children.map(children, (child, i) => (
+          <Box flex={1} key={i} width={width}>
+            {child}
+          </Box>
+        ))}
+      </Animated.View>
     </Box>
   );
 };

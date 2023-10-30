@@ -4,6 +4,8 @@ import { HomeNavigationProps } from "../../Components/Navigation";
 import { Dimensions } from "react-native";
 import { useTheme } from "../../Components/Theme";
 import Tabs from "./Tabs";
+import Configiration from "./Configiration";
+import PersonalInfo from "./PersonalInfo";
 
 const { width } = Dimensions.get("screen");
 
@@ -23,7 +25,7 @@ const EditProfile = ({ navigation }: HomeNavigationProps<"EditProfile">) => {
   return (
     <Box flex={1} backgroundColor={"background"}>
       {/* Top Design */}
-      <Box flex={0.2}>
+      <Box flex={0.3}>
         <Box
           position="absolute"
           top={0}
@@ -42,7 +44,7 @@ const EditProfile = ({ navigation }: HomeNavigationProps<"EditProfile">) => {
         </Box>
       </Box>
       {/* Top-Design-Bottom-Left-Curve */}
-      <Box flex={0.2}>
+      <Box>
         {/* User Avatar */}
         <Box
           position="absolute"
@@ -64,7 +66,10 @@ const EditProfile = ({ navigation }: HomeNavigationProps<"EditProfile">) => {
         </Box>
       </Box>
       {/* Tabs for the user choices */}
-      <Tabs tabs={tabs} />
+      <Tabs tabs={tabs}>
+        <Configiration />
+        <PersonalInfo />
+      </Tabs>
     </Box>
   );
 };
