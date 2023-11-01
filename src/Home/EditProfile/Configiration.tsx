@@ -100,7 +100,7 @@ const Configiration = () => {
           {`What kind of outfit do you usually wear?`}
         </Text>
         {/* single choice checkbox group option */}
-        <CheckboxGroup options={outfits} />
+        <CheckboxGroup options={outfits} radio />
 
         {/* Question Label 2 */}
         <Text textAlign={"left"} variant={"body"}>
@@ -120,7 +120,7 @@ const Configiration = () => {
         <Text textAlign={"left"} variant={"body"}>
           {`My Preferred Brands`}
         </Text>
-        {/* single choice checkbox group option */}
+        {/*  multiple choice checkbox group option */}
         <CheckboxGroup options={preferredBrands} />
       </Box>
     </ScrollView>

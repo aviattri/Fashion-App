@@ -7,10 +7,11 @@ interface option {
 }
 interface CheckboxGroupProps {
   options: option[];
+  radio?: boolean;
 }
 
-const CheckboxGroup = ({ options }: CheckboxGroupProps) => {
-  const [selectedValue, setSelectedValue] = React.useState<string[]>([]);
+const CheckboxGroup = ({ options, radio }: CheckboxGroupProps) => {
+  const [selectedValue, setSelectedValues] = React.useState<string[]>([]);
   return (
     <Box flexDirection={"row"} flexWrap={"wrap"} marginTop={"m"}>
       {options.map(({ value, label }) => {
@@ -23,12 +24,16 @@ const CheckboxGroup = ({ options }: CheckboxGroupProps) => {
             key={value}
             variant={isSelected ? "primary" : "default"}
             onPress={() => {
-              if (isSelected) {
-                selectedValue.splice(index, 1);
+              if (radio) {
+                setSelectedValues([value]);
               } else {
-                selectedValue.push(value);
+                if (isSelected) {
+                  selectedValue.splice(index, 1);
+                } else {
+                  selectedValue.push(value);
+                }
+                setSelectedValues([...selectedValue]);
               }
-              setSelectedValue([...selectedValue]);
             }}
             label={label}
             style={{

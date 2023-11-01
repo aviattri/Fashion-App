@@ -10,7 +10,7 @@ import RoundedIcons from "../RoundedIcons";
 
 interface TextInputProps extends RNTextInputProps {
   icon: string;
-  touched: boolean;
+  touched?: boolean;
   error?: string;
 }
 
