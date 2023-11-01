@@ -93,6 +93,7 @@ const Configiration = () => {
       contentContainerStyle={{
         margin: 20,
       }}
+      showsVerticalScrollIndicator={false}
     >
       <Box padding={"m"}>
         {/* Question Label 1 */}

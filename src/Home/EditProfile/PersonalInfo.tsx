@@ -22,6 +22,7 @@ const PersonalInfo = () => {
       contentContainerStyle={{
         margin: 20,
       }}
+      showsVerticalScrollIndicator={false}
     >
       <Box padding={"m"}>
         <Text textAlign={"left"} variant={"body"} marginBottom="m">

@@ -30,7 +30,7 @@ const Tabs = ({ tabs, children }: TabsProps) => {
 
   return (
     <Box flex={1}>
-      <Box flexDirection="row">
+      <Box flexDirection="row" marginBottom={"m"}>
         {/* User Profile Tabs */}
         {tabs.map((tab, i) => (
           <BorderlessButton
@@ -65,7 +65,6 @@ const Tabs = ({ tabs, children }: TabsProps) => {
           flex: 1,
           width: width * tabs.length,
           flexDirection: "row",
-
           transform: [{ translateX: multiply(-width, transition) }],
         }}
       >
