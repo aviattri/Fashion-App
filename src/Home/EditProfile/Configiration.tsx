@@ -2,6 +2,7 @@ import { View, ScrollView } from "react-native";
 import React from "react";
 import { Box, Text } from "../../Components";
 import CheckboxGroup from "./CheckboxGroup";
+import RoundedCheckboxGroup from "./RoundedCheckboxGroup";
 
 const outfits = [
   {
@@ -51,6 +52,40 @@ const preferredBrands = [
     label: "See All",
   },
 ];
+const size = [
+  {
+    value: "s",
+  },
+  {
+    value: "m",
+  },
+  {
+    value: "l",
+  },
+  {
+    value: "xl",
+  },
+  {
+    value: "xll",
+  },
+];
+const colors = [
+  {
+    value: "#0C0D34",
+  },
+  {
+    value: "#FF0058",
+  },
+  {
+    value: "#50B9DE",
+  },
+  {
+    value: "#00D99A",
+  },
+  {
+    value: "#FE5E33",
+  },
+];
 
 const Configiration = () => {
   return (
@@ -59,21 +94,35 @@ const Configiration = () => {
         margin: 20,
       }}
     >
-      {/* single choice checkbox group option */}
       <Box padding={"m"}>
-        {/* Question Label */}
+        {/* Question Label 1 */}
         <Text variant={"body"} textAlign={"left"}>
           {`What kind of outfit do you usually wear?`}
         </Text>
-      </Box>
-      <CheckboxGroup options={outfits} />
+        {/* single choice checkbox group option */}
+        <CheckboxGroup options={outfits} />
 
-      {/* single choice checkbox group option */}
-      <Box padding={"m"}>
-        {/* Question Label */}
-        <Text textAlign={"left"} variant={"body"}>{`My Preferred Brands`}</Text>
+        {/* Question Label 2 */}
+        <Text textAlign={"left"} variant={"body"}>
+          {`What is your clothing size?`}
+        </Text>
+        {/* multiple choice checkbox group option */}
+        <RoundedCheckboxGroup options={size} />
+
+        {/* Question Label 3 */}
+        <Text textAlign={"left"} variant={"body"}>
+          {`My preferred clothing colors`}
+        </Text>
+        {/* multiple choice checkbox group option */}
+        <RoundedCheckboxGroup options={colors} valueIsColor />
+
+        {/* Question Label 4 */}
+        <Text textAlign={"left"} variant={"body"}>
+          {`My Preferred Brands`}
+        </Text>
+        {/* single choice checkbox group option */}
+        <CheckboxGroup options={preferredBrands} />
       </Box>
-      <CheckboxGroup options={preferredBrands} />
     </ScrollView>
   );
 };

@@ -13,6 +13,7 @@
     "ci": "yarn lint && yarn tsc"
   },
   "dependencies": {
+    "@expo/vector-icons": "^13.0.0",
     "@react-navigation/drawer": "~5.12.5",
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.2.5",
