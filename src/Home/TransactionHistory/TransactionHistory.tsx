@@ -6,6 +6,7 @@ import Graph, { DataPoint } from "./Graph/Graph";
 import Transaction from "./Transaction";
 import { ScrollView } from "react-native-gesture-handler";
 import TopCurve from "./TopCurve";
+import ScrollableContent from "../../Components/ScrollableContent";
 
 const footerHeight = Dimensions.get("window").width / 3;
 const useStyles = makeStyles((theme: Theme) => ({
@@ -50,64 +51,53 @@ const TransactionHistory = ({
 }: HomeNavigationProps<"TransactionHistory">) => {
   const styles = useStyles();
   return (
-    <Box flex={1} backgroundColor="background">
-      <Header
-        left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
-        right={{ icon: "share", onPress: () => console.log("share") }}
-        title={"Transaction Histroy"}
-      />
+    <ScrollableContent>
+      <Box flex={1} backgroundColor="background">
+        <Header
+          left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
+          right={{ icon: "share", onPress: () => console.log("share") }}
+          title={"Transaction Histroy"}
+        />
 
-      {/* User Total Spent Details  */}
-      <Box
-        padding="m"
-        flexDirection="row"
-        justifyContent="space-between"
-        alignItems="flex-end"
-      >
-        {/* Shopping Stats */}
-        <Box alignItems="flex-start">
-          <Text variant="header" color="secondary" opacity={0.3}>
-            {`TOTAL SPENT`}
-          </Text>
-          <Text variant="title1">{`$699, 99`}</Text>
-        </Box>
-        {/* Button */}
-        <Box backgroundColor="primaryLight" borderRadius="m" padding="s">
-          <Text>All Time</Text>
-        </Box>
-      </Box>
-      {/* User Shopping Stats   */}
-      <Box padding="m">
-        <Graph
-          data={data}
-          numberOfMonths={numberOfMonths}
-          startDate={startDate}
-        />
-        {/* Transactions */}
-        <ScrollView
-          contentContainerStyle={styles.scrollView}
-          showsVerticalScrollIndicator={false}
+        {/* User Total Spent  Details  */}
+        <Box
+          padding="m"
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="flex-end"
         >
-          {data.map((transaction) => (
-            <Transaction key={transaction?.id} transaction={transaction} />
-          ))}
-        </ScrollView>
+          {/* Shopping Stats */}
+          <Box alignItems="flex-start">
+            <Text variant="header" color="secondary" opacity={0.3}>
+              {`TOTAL SPENT`}
+            </Text>
+            <Text variant="title1">{`$699, 99`}</Text>
+          </Box>
+          {/* Button */}
+          <Box backgroundColor="primaryLight" borderRadius="m" padding="s">
+            <Text>All Time</Text>
+          </Box>
+        </Box>
+        {/* User Shopping Stats   */}
+        <Box padding="m">
+          <Graph
+            data={data}
+            numberOfMonths={numberOfMonths}
+            startDate={startDate}
+          />
+          {/* Transactions */}
+          <ScrollView
+            contentContainerStyle={styles.scrollView}
+            showsVerticalScrollIndicator={false}
+          >
+            {data.map((transaction) => (
+              <Transaction key={transaction?.id} transaction={transaction} />
+            ))}
+          </ScrollView>
+        </Box>
+        {/* Footer */}
       </Box>
-      {/* Footer */}
-      <TopCurve {...{ footerHeight }} />
-      <Box
-        position="absolute"
-        left={0}
-        right={0}
-        bottom={0}
-        height={footerHeight}
-      >
-        <Image
-          style={styles.footer}
-          source={require("../../../assets/pattern3.png")}
-        />
-      </Box>
-    </Box>
+    </ScrollableContent>
   );
 };
 
