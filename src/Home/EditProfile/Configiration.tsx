@@ -94,6 +94,9 @@ const Configiration = () => {
         margin: 20,
       }}
       showsVerticalScrollIndicator={false}
+      style={{
+        marginBottom: 20,
+      }}
     >
       <Box padding={"m"}>
         {/* Question Label 1 */}
