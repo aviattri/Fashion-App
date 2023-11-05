@@ -27,7 +27,7 @@ const Settings = ({ navigation }: HomeNavigationProps<"Settings">) => {
           />
           {/* Setting 3*/}
           <Notification
-            title="Stock Notifications  "
+            title="Stock Notifications"
             description="If the product you ❤️ comes back in stock"
           />
           {/* Setting 3*/}

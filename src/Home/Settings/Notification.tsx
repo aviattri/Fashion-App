@@ -14,7 +14,9 @@ const Notification = ({ title, description }: NotificationProps) => {
   return (
     <Box flexDirection={"row"} marginBottom={"m"}>
       <Box flex={1} alignItems={"flex-start"}>
-        <Text variant={"title3"}>{title} </Text>
+        <Text textAlign={"left"} variant={"title3"}>
+          {title}{" "}
+        </Text>
         <Text variant={"body"}>{description}</Text>
       </Box>
       <Box paddingVertical={"m"}>
