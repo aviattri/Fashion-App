@@ -13,22 +13,21 @@ const { width } = Dimensions.get("window");
 const height = (682 * width) / 375;
 
 const Cart = () => {
-  const translateY = useSharedValue(1);
+  const translateY = useSharedValue(0);
   console.log(translateY.value);
-  // const onGestureEvent = useAnimatedGestureHandler({
-  //   onActive: ({ translationY }) => {
-  //     translateY.value = translationY;
-  //   },
-  // });
-  // animated style to translate
+  const onGestureEvent = useAnimatedGestureHandler({
+    onActive: ({ translationY }) => {
+      translateY.value = translationY;
+    },
+  });
 
-  // const style = useAnimatedStyle(() => ({
-  //   transform: [{ translateY: translateY.value }],
-  // }));
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: translateY.value }],
+  }));
 
   return (
     <Box flex={1} backgroundColor={"secondary"}>
-      <PanGestureHandler>
+      <PanGestureHandler onGestureEvent={onGestureEvent}>
         <Animated.View
           style={[
             {
@@ -41,6 +40,7 @@ const Cart = () => {
               borderBottomLeftRadius: theme.borderRadii.xl,
               borderBottomRightRadius: theme.borderRadii.xl,
             },
+            animatedStyle,
           ]}
         />
       </PanGestureHandler>
