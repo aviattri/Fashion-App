@@ -8,7 +8,7 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import theme, { aspectRatio } from "../../Components/Theme";
-import { PanGestureHandler } from "react-native-gesture-handler";
+import { GestureEvent, PanGestureHandler } from "react-native-gesture-handler";
 import { clamp, snapPoint } from "react-native-redash";
 
 const { width } = Dimensions.get("window");
@@ -19,24 +19,35 @@ const snapPoints = [-(height - minHeight), 0];
 interface CartContainerProps {
   children: ReactNode;
 }
+type GestureContent = {
+  y?: number;
+};
+
 export const CartContainer = ({ children }: CartContainerProps) => {
   const translateY = useSharedValue(0);
 
-  const onGestureEvent = useAnimatedGestureHandler<{ y?: number }>({
+  const onGestureEvent = useAnimatedGestureHandler<
+    GestureEvent<Record<string, unknown>>,
+    GestureContent
+  >({
     //To keep track of current position
     onStart: (event, ctx) => {
       ctx.y = translateY.value;
     },
-    onActive: ({ translationY }, ctx) => {
+    onActive: (event, ctx) => {
+      const translationY = event?.translationY as number;
+
       translateY.value = clamp(
-        ctx.y + translationY,
+        (ctx.y ?? 0) + translationY,
         snapPoints[0],
         snapPoints[1]
       );
     },
-    onEnd: ({ velocityY }) => {
+    onEnd: (event) => {
+      const velocityY = event?.velocityY as number;
+
       const dest = snapPoint(translateY.value, velocityY, snapPoints);
-      translateY.value = withSpring(dest);
+      translateY.value = withSpring(dest, { overshootClamping: true });
     },
   });
 
