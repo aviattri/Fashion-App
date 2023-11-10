@@ -7,7 +7,7 @@ import { Box } from "../../Components";
 import { ScrollView } from "react-native-gesture-handler";
 import Item from "./Item";
 import Svg, { Path } from "react-native-svg";
-import theme, { Text, aspectRatio, useTheme } from "../../Components/Theme";
+import { Text, aspectRatio, useTheme } from "../../Components/Theme";
 
 const { width } = Dimensions.get("window");
 const height = 100 * aspectRatio;
@@ -29,19 +29,42 @@ const Cart = ({ navigation }: HomeNavigationProps<"Cart">) => {
           title={"Shopping Cart"}
         />
       </Box>
-      {/* Header SVG Shape */}
-      <Box width={width} height={height}>
-        <Svg style={StyleSheet.absoluteFill} viewBox="0 0 375 100">
-          <Path d={d} fill={theme.colors.primary} />
-        </Svg>
-        {/* Overlay Text */}
-        <Text variant="title2" color="background">
-          {`3 Items Added`}
-        </Text>
+
+      <Box flex={1}>
+        <ScrollView
+          style={{
+            borderBottomLeftRadius: theme.borderRadii.xl,
+            borderBottomRightRadius: theme.borderRadii.xl,
+          }}
+          contentContainerStyle={{
+            paddingVertical: 50 * aspectRatio,
+          }}
+          showsVerticalScrollIndicator={false}
+        >
+          <Item />
+          <Item />
+          <Item />
+          <Item />
+        </ScrollView>
+        {/* Header SVG Shape */}
+        <Box
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height,
+          }}
+        >
+          <Svg style={StyleSheet.absoluteFill} viewBox="0 0 375 100">
+            <Path d={d} fill={theme.colors.primary} />
+          </Svg>
+          {/* Overlay Text */}
+          <Text variant="title2" color="background">
+            {`3 Items Added`}
+          </Text>
+        </Box>
       </Box>
-      <ScrollView>
-        <Item />
-      </ScrollView>
     </CartContainer>
   );
 };
