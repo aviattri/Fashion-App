@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { ImageStyle, TextStyle, ViewStyle } from "react-native";
+import { Dimensions, ImageStyle, TextStyle, ViewStyle } from "react-native";
 
 import {
   createBox,
@@ -7,6 +7,9 @@ import {
   useTheme as useReTheme,
   ThemeProvider as ReStyleThemeProvider,
 } from "@shopify/restyle";
+
+const { width } = Dimensions.get("window");
+export const aspectRatio = width / 375;
 
 export const palette = {
   white: "white",
