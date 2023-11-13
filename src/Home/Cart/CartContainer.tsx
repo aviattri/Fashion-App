@@ -8,7 +8,10 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import theme, { aspectRatio } from "../../Components/Theme";
-import { GestureEvent, PanGestureHandler } from "react-native-gesture-handler";
+import {
+  GestureEvent,
+  PanGestureHandler,
+} from "react-native-gesture-handler";
 import { clamp, snapPoint } from "react-native-redash";
 
 const { width } = Dimensions.get("window");

@@ -6,7 +6,10 @@ interface RoundedIconButtonProps extends RoundedIconProps {
   onPress: () => void;
 }
 
-const RoundedIconButton = ({ onPress, ...props }: RoundedIconButtonProps) => {
+const RoundedIconButton = ({
+  onPress,
+  ...props
+}: RoundedIconButtonProps) => {
   return (
     <BorderlessButton {...{ onPress }}>
       <RoundedIcons {...props} />

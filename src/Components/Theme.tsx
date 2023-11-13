@@ -35,7 +35,7 @@ const theme = {
     info: "#808080",
     textContrast: palette.white,
     primaryLight: "#E7F9F7",
-
+    editCart: palette.lightBlue,
     graph1: palette.orange,
     graph2: palette.red,
     drawer1: palette.orange,
@@ -114,6 +114,18 @@ const theme = {
     phone: 0,
     tablet: 768,
   },
+  palette: {
+    white: "white",
+    orange: "#FFA500",
+    yellow: "#FFFF00",
+    pink: "#FFC0CB",
+    violet: "#EE82EE",
+    // green: "#008000",
+    purple: "#800080",
+    lightBlue: "#BFEAF5",
+    green: "#2CB9B0",
+    red: "#FF0058",
+  },
 };
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => (
@@ -126,7 +138,9 @@ export type Theme = typeof theme;
 export default theme;
 export const useTheme = () => useReTheme<Theme>();
 
-type NamedStyles<T> = { [P in keyof T]: ViewStyle | TextStyle | ImageStyle };
+type NamedStyles<T> = {
+  [P in keyof T]: ViewStyle | TextStyle | ImageStyle;
+};
 
 export const makeStyles =
   <T extends NamedStyles<T>>(styles: (theme: Theme) => T) =>
