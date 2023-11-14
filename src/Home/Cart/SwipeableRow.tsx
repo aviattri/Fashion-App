@@ -8,6 +8,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
+  withTiming,
 } from "react-native-reanimated";
 import { Text, aspectRatio } from "../../Components/Theme";
 import { snapPoint } from "react-native-redash";
@@ -16,16 +17,25 @@ import { LinearGradient } from "expo-linear-gradient";
 interface SwipeableRowProps {
   children: React.ReactNode;
   onDelete: () => void;
+  height: number;
 }
 const { width } = Dimensions.get("window");
 const finalDestination = width;
 const editWidth = 85 * aspectRatio;
 const snapPoints = [-editWidth, 0, finalDestination];
 
-const SwipeableRow = ({ children, onDelete }: SwipeableRowProps) => {
+const SwipeableRow = ({
+  children,
+  onDelete,
+  height: defaultHeight,
+}: SwipeableRowProps) => {
   const theme = useTheme();
+
   // We will have translate on the Xaxis
   const translateX = useSharedValue(0);
+
+  const height = useSharedValue(defaultHeight);
+
   const onGestureEvent = useAnimatedGestureHandler<{ x: number }>({
     onStart: (_, ctx) => {
       ctx.x = translateX.value;
@@ -44,7 +54,10 @@ const SwipeableRow = ({ children, onDelete }: SwipeableRowProps) => {
         { overshootClamping: true },
         () => {
           if (dest === finalDestination) {
-            runOnJS(onDelete)();
+            //We do this for the transiton effect on Delete
+            height.value = withTiming(0, { duration: 250 }, () => {
+              runOnJS(onDelete)();
+            });
           }
         }
       );
