@@ -8,6 +8,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import Item from "./Item";
 import Svg, { Path } from "react-native-svg";
 import { Text, aspectRatio, useTheme } from "../../Components/Theme";
+import Checkout from "./Checkout";
 
 const { width } = Dimensions.get("window");
 const height = 100 * aspectRatio;
@@ -51,7 +52,7 @@ const Cart = ({ navigation }: HomeNavigationProps<"Cart">) => {
 
   const theme = useTheme();
   return (
-    <CartContainer>
+    <CartContainer CheckoutComponent={Checkout}>
       <Box backgroundColor={"primary"}>
         <Header
           dark

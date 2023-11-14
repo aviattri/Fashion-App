@@ -21,12 +21,16 @@ const snapPoints = [-(height - minHeight), 0];
 
 interface CartContainerProps {
   children: ReactNode;
+  CheckoutComponent: React.FC<{ minHeight: number }>;
 }
 type GestureContent = {
   y?: number;
 };
 
-export const CartContainer = ({ children }: CartContainerProps) => {
+export const CartContainer = ({
+  children,
+  CheckoutComponent,
+}: CartContainerProps) => {
   const translateY = useSharedValue(0);
 
   const onGestureEvent = useAnimatedGestureHandler<
@@ -59,7 +63,9 @@ export const CartContainer = ({ children }: CartContainerProps) => {
   }));
 
   return (
-    <Box flex={1} backgroundColor={"secondary"}>
+    <Box flex={1}>
+      {/* Children to display background layer (checkout) */}
+      {<CheckoutComponent minHeight={minHeight} />}
       <PanGestureHandler onGestureEvent={onGestureEvent}>
         <Animated.View
           style={[
