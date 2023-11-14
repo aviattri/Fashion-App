@@ -1,6 +1,6 @@
 import { Image, Pressable } from "react-native";
 import React from "react";
-import { Box } from "../../Components";
+import { Box, Text } from "../../Components";
 import { CardLayout } from "./CardLayout";
 
 export enum cardType {
@@ -30,8 +30,8 @@ const Card = ({ card, selected, onSelected }: CardProps) => {
       backgroundColor={selected ? "primary" : "background"}
       onPress={onSelected}
     >
-      {/* Image */}
-      <Box marginLeft={"m"} marginTop={"m"}>
+      {/* Card Logo */}
+      <Box marginLeft={"s"} marginTop={"m"}>
         <Image
           style={
             card.type === cardType.VISA
@@ -43,6 +43,22 @@ const Card = ({ card, selected, onSelected }: CardProps) => {
           }
           source={card.type === cardType.VISA ? visaLogo : mastercardLogo}
         />
+      </Box>
+      {/* Card Number */}
+      <Text
+        variant="title3"
+        marginTop="m"
+        marginBottom={"s"}
+        color={selected ? "background" : "text"}
+      >
+        {`**** ${card.last4Digits}`}
+      </Text>
+      {/* Expiration */}
+      <Box alignItems={"flex-start"}>
+        <Text opacity={0.5} color={"secondary"}>{`Expiration`}</Text>
+        <Text color={selected ? "background" : "text"}>
+          {`${card.expiration}`}
+        </Text>
       </Box>
     </CardLayout>
   );

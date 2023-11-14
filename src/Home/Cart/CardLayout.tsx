@@ -10,6 +10,8 @@ interface CardLayoutProps {
   backgroundColor: BoxProps<typeof Theme>["backgroundColor"];
 }
 
+export const CARD_HEIGHT = 160;
+
 export const CardLayout = ({
   onPress,
   backgroundColor,
@@ -23,7 +25,7 @@ export const CardLayout = ({
         marginLeft={"m"}
         borderRadius={"m"}
         width={120}
-        height={160}
+        height={CARD_HEIGHT}
         backgroundColor={backgroundColor}
       >
         {children}
