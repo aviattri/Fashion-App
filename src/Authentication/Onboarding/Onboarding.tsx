@@ -128,6 +128,10 @@ const Onboarding = ({ navigation }: AuthNavigationProps<"Onboarding">) => {
 
   const currentIndex = useDerivedValue(() => x.value / width);
 
+  const footerStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: -x.value }],
+  }));
+
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.slider, slider]}>
@@ -190,12 +194,14 @@ const Onboarding = ({ navigation }: AuthNavigationProps<"Onboarding">) => {
           </View>
           {/* Footer */}
           <Animated.View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              width: width * slides.length,
-              transform: [{ translateX: 0 }],
-            }}
+            style={[
+              {
+                flex: 1,
+                flexDirection: "row",
+                width: width * slides.length,
+              },
+              footerStyle,
+            ]}
           >
             {slides.map(({ title, description }, index) => {
               const last = index === slides.length - 1;
