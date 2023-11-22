@@ -5,8 +5,15 @@ import Underlay, { MARGIN } from "./Underlay";
 import { lerp } from "./Scale";
 import moment from "moment";
 import { useIsFocused } from "@react-navigation/native";
-import { useTransition } from "react-native-redash";
-import Animated, { divide, multiply, sub } from "react-native-reanimated";
+import Animated, {
+  divide,
+  interpolate,
+  multiply,
+  sub,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 const { width: wWidth } = Dimensions.get("window");
 const aspectRatio = 195 / 305;
@@ -28,7 +35,6 @@ interface GraphProps {
 const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
   const theme = useTheme();
   const isFocused = useIsFocused();
-  const transition = useTransition(isFocused, { duration: 650 });
   // We can attach an animation value to change the isFocused State
 
   const canvaWidth = wWidth - theme.spacing.m * 2;
@@ -49,6 +55,23 @@ const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
   const minY = Math.min(...values);
   const maxY = Math.max(...values);
 
+  // Create a shared value for each data point
+  const animations = data.map(() => useSharedValue(0));
+
+  // Trigger the animations when the component is focused
+  React.useEffect(() => {
+    if (isFocused) {
+      animations.forEach((anim) => {
+        anim.value = withTiming(1, { duration: 650 });
+      });
+    } else {
+      // Reset animation when screen goes out of focus
+      animations.forEach((anim) => {
+        anim.value = 0;
+      });
+    }
+  }, [isFocused]);
+
   return (
     // Canva Container
     <Box marginTop="xl" paddingBottom={MARGIN} paddingLeft={MARGIN}>
@@ -61,25 +84,39 @@ const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
         step={step}
       />
       <View style={{ width, height, overflow: "hidden" }}>
-        {data.map((point) => {
+        {data.map((point, index) => {
           const i = Math.round(
             moment.duration(moment(point.date).diff(startDate)).asMonths()
           );
-          const totalHeight = lerp(0, height, point.value / height);
-          const currentHeight = multiply(totalHeight, transition);
-          const translateY = divide(sub(totalHeight, currentHeight), 2);
+          const totalHeight = lerp(0, height, point.value / maxY);
+
+          const animatedStyle = useAnimatedStyle(() => {
+            return {
+              height: interpolate(
+                animations[index].value,
+                [0, 1],
+                [0, totalHeight]
+              ),
+              transform: [
+                {
+                  translateY: interpolate(
+                    animations[index].value,
+                    [0, 1],
+                    [totalHeight / 2, 0]
+                  ),
+                },
+              ],
+            };
+          });
 
           return (
             <AnimatedBox
-              key={point.date}
+              key={point.id}
               position="absolute"
               left={i * step}
               bottom={0}
               width={step}
-              height={totalHeight}
-              style={{
-                transform: [{ translateY }, { scaleY: transition }],
-              }}
+              style={animatedStyle}
             >
               <Box
                 position={"absolute"}
