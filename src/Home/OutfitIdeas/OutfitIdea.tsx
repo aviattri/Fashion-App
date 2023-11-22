@@ -54,7 +54,7 @@ const OutfitIdea = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
         }}
         right={{
           icon: "shopping-bag",
-          onPress: () => console.log("pressed"),
+          onPress: () => navigation.navigate("Cart"),
         }}
       />
       {/* ListView compoenent  */}
