@@ -4,9 +4,8 @@ import Header from "../../Components/Header";
 import { HomeNavigationProps } from "../../Components/Navigation";
 import Background from "./Background";
 import Card from "./Card";
-import { useTransition } from "react-native-redash";
-import { sub } from "react-native-reanimated";
 import Categories from "./Categories";
+import { useTiming } from "react-native-redash";
 
 //  Cards Array
 //  Here the order matters, item with the last index at 0 would be the first one to be placed in the queue
@@ -36,14 +35,14 @@ const OutfitIdea = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
   // --> Main Idea behind the card animations is to animate the swiping animation famous from dating apps
   // --> The first card we discard, we don't want to display anymore and so on and so forth
   // --> To achive that we will use some famous APIs from RN-Aniamted
-  // --> restSpeedThreshold (very high) and overshootClamping with a truthy value
+  // --> restSpeedThreshold (very high) and overshoot  Clamping with a truthy value
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Idea behind animated index
-  // Every time the current index changes from 0 to 1
+  // Every time the cur rent index changes from 0 to 1
   // the aIndex - `a` animating index will `animate` from 0 to 0.1, 0.2...
-  const aIndex = useTransition(currentIndex);
+  const aIndex = useTiming(currentIndex);
   return (
     <Box flex={1} backgroundColor="background">
       {/* Header Component */}
@@ -74,11 +73,13 @@ const OutfitIdea = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
             currentIndex < index * step + step && (
               <Card
                 key={index}
-                position={sub(index * step, aIndex)}
+                index={index}
+                aIndex={aIndex}
+                step={step}
                 onSwipe={() => {
                   setCurrentIndex((prev) => prev + step);
                 }}
-                {...{ source, step }}
+                {...{ source }}
               />
             )
         )}

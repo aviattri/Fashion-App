@@ -6,10 +6,7 @@ import { lerp } from "./Scale";
 import moment from "moment";
 import { useIsFocused } from "@react-navigation/native";
 import Animated, {
-  divide,
   interpolate,
-  multiply,
-  sub,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
@@ -36,7 +33,6 @@ const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
   const theme = useTheme();
   const isFocused = useIsFocused();
   // We can attach an animation value to change the isFocused State
-
   const canvaWidth = wWidth - theme.spacing.m * 2;
   const canvaHeight = canvaWidth * aspectRatio;
 
@@ -44,13 +40,8 @@ const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
   const height = canvaHeight - theme.spacing[MARGIN] / canvaWidth;
 
   const step = width / numberOfMonths;
-
   //we need all values to calc mean and max to interpolate in points
   const values = data.map((p) => p.value);
-  // const dates = data.map((p) => p.date);
-
-  // const minX = Math.min(...dates);
-  // const maxX = Math.max(...dates);
 
   const minY = Math.min(...values);
   const maxY = Math.max(...values);

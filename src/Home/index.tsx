@@ -23,7 +23,7 @@ export const HomeNavigator = () => (
       width: DRAWER_WIDTH,
     }}
   >
-    {/* <Drawer.Screen name="OutfitIdeas" component={OutfitIdeas} /> */}
+    <Drawer.Screen name="OutfitIdeas" component={OutfitIdeas} />
     <Drawer.Screen name="FavouriteOutfits" component={FavouriteOutfits} />
     <Drawer.Screen
       name="TransactionHistory"
